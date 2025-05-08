@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/header.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/all_teachers.css">
+    <link rel="stylesheet" href="/style/about_us.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <%- include('header') %>
+    </header>
+    <div class="main_div_about_us">
+        <h1 class="units_lable animate-about-title">ПРО НАС</h1>
+        <div class="main_text_about_us">
+            <img class="main_div_about_us_img animate-about-img" src="/img/about_us_page_text_img.png" height="280px" alt="">
+            <h2 class="main_text_about_us_h2 animate-about-text">
+                OsvitaHUB — це сучасна онлайн-школа репетиторства, створена у 2025 році з метою надання якісної, 
+                доступної та ефективної освітньої підтримки учням молодшої середньої та старшої школи. 
+                Ми поєднуємо гнучкий формат онлайн-навчання із сучасними педагогічними підходами, 
+                щоб забезпечити максимальний результат та комфорт для кожного учня.
+            </h2>
+        </div>
+    </div>
+    
+
+
+    <div class="our_servises_main_div">
+        <div class="our_servises_main_div_border">
+            <h1 style="color: black;" class="units_lable animate-services-title">НАШІ ПОСЛУГИ</h1>
+    
+            <div class="our_servises_main_info_div">
+                <img class="animate-services-img" width="280px" src="/img/about_us_our_dervises_img.png" alt="">
+                <h2 class="animate-services-text" style="font-weight: 100;">
+                    Наша команда складається з молодих, енергійних викладачів, які спеціалізуються на викладанні таких предметів, як:
+                </h2>
+            </div>
+    
+            <div id="lessons_description">
+                <div class="our_servises_div_for_lessons animate-lessons">
+                    <div class="lessons_img">
+                        <h2 class="lessons_name">- Українська мова</h2>
+                        <img src="/img/about_us_our_ukraine_language_img.png" alt="">
+                    </div>
+                    <div class="lessons_img">
+                        <h2 class="lessons_name">- Математика</h2>
+                        <img src="/img/about_us_our_math_img.png" alt="">
+                    </div>
+                    <div class="lessons_img">
+                        <h2 class="lessons_name">- Історія України</h2>
+                        <img src="/img/about_us_our_history_img.png" alt="">
+                    </div>
+                </div>
+    
+                <div class="animate-lessons">
+                    <div id="lessons_description_border">
+                        <p style="font-weight: 100; font-size: 24px;">
+                            З моменту заснування OsvitaHUB вже надала ефективну освітню підтримку багатьом учням з усієї України. 
+                            Ми з гордістю отримуємо численні позитивні відгуки від учнів та їхніх батьків,
+                            які відзначають не лише високий рівень викладання, а й результативність та індивідуальний підхід.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <h2 id="about_us_text_under_lesson">Ми глибоко переконані, що кожна дитина унікальна, тому пропонуємо 
+        персоналізовані навчальні програми, які адаптуються до потреб, цілей та рівня підготовки 
+        конкретного учня. Для зручності та гнучкості ми розробили різноманітні тарифні плани, які дають 
+        можливість обрати оптимальну кількість занять відповідно до поставлених завдань — від короткострокових 
+        інтенсивів до повноцінного супроводу протягом навчального року.
+    </h2>
+
+    <h2 style="color: white; text-align: center; font-size: 42px; margin-top: 40px;">НАШІ ВИКЛАДАЧІ</h2>
+    <div class="teachers-preview-container">
+        <% teachers.forEach(teacher => { %>
+          <div class="teacher-card">
+            <img class="teacher-avatar" src="<%= teacher.avatar ? teacher.avatar : '/img/default-avatar.png' %>" alt="Аватар">
+            <p><strong><%= teacher.subjects[0] || 'Предмет не вказано' %></strong></p>
+            <p><%= teacher.phone %></p>
+            <a href="/teachers/<%= teacher._id %>">Детальніше</a>
+          </div>
+        <% }) %>
+      </div>
+      
+      <div style="text-align:center; margin-top: 20px;">
+        <a href="/teachers" class="view-all-link">Переглянути всіх викладачів</a>
+      </div>
+
+      <h2 style="color: white;">
+        Наша мета — не просто допомогти засвоїти шкільну програму, а й сформувати 
+        у дітей впевненість у власних знаннях, мотивацію до навчання та здатність самостійно мислити. 
+        Ми прагнемо зробити освіту не лише результативною, а й цікавою та натхненною.
+      </h2>
+
+     <script src="/js/animations_about_us.js"></script>
+
+</body>
+</html>

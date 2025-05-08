@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/header.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/all_teachers.css">
+    <title>Всі викладачі</title>
+</head>
+<body>
+    <header>
+        <%- include('header') %>
+    </header>
+
+    <div class="main_div_about_us">
+        <h1 class="units_lable animate-about-title">Всі викладачі</h1>
+
+        <div class="teachers-preview-container">
+            <% teachers.forEach(teacher => { %>
+                <div class="teacher-card">
+                    <img class="teacher-avatar" src="<%= teacher.avatar ? teacher.avatar : '/img/default-avatar.png' %>" alt="Аватар">
+                    <p><strong><%= teacher.subjects[0] || 'Предмет не вказано' %></strong></p>
+                    <p><%= teacher.phone %></p>
+                    <a href="/teachers/<%= teacher._id %>">Детальніше</a>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <script src="/js/animations_about_us.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+header {
+  font-family: 'Montserrat', sans-serif;
+  background-color: white;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  pointer-events: auto;
+}
+#ProfileImg{
+  margin-right: 60px;
+}
+header.hidden {
+  transform: translateY(-90%);
+  opacity: 0.01;
+}
+
+header.revealed-by-hover {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+#left_group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#mainLogoImg {
+  height: 70px;
+  margin-right: 20px; /* Зменшили відступ, щоб не вилазило за межі */
+}
+
+.center-zone {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+#NaviLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+
+#NaviLinks a,
+#contactLink {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+#NaviLinks a:hover,
+#contactLink:hover {
+  color: #cc0000;
+}
+
+#contactLink {
+  margin-right: 77px;
+}
+
+#contact-profile {
+  display: flex;
+  align-items: center;
+}
+
+/* Стилі для кнопки гамбургера */
+#menuToggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+#menuToggle .hamburger {
+  margin-bottom: 10px;
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  display: block;
+  position: relative;
+}
+
+#menuToggle .hamburger::before,
+#menuToggle .hamburger::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  display: block;
+}
+
+#menuToggle .hamburger::before {
+  top: -8px;
+}
+
+#menuToggle .hamburger::after {
+  margin-bottom: 10px;
+  top: 8px;
+}
+
+@media (max-width: 950px) {
+  #contactLink{
+    margin-right: 10px;
+  }
+}
+
+
+@media (max-width: 860px) {
+  header:not(.open) a[href="/login_page"] {
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.5; /* опціонально */
+    height: 1px;
+  }
+  
+  #ProfileImg{
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+  }
+  #contact-profile{
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+  }
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px 20px;
+    height: auto;
+  }
+
+  #NaviLinks,
+  #contactLink,
+  #ProfileImg {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  header.open #NaviLinks,
+  header.open #contactLink,
+  header.open #ProfileImg {
+    max-height: 200px; /* або більше, якщо потрібно */
+    opacity: 1;
+  }
+
+  #menuToggle {
+    display: block;
+  }
+
+  #mainLogoImg {
+    margin-right: 0;
+  }
+
+  #contact-profile {
+    margin-top: 20px;
+  }
+
+  #contactLink {
+    margin-left: 0;
+  }
+}
+

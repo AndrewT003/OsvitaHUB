@@ -1,0 +1,651 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin-top: 100px;
+  background-color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+/* Hero Section */
+.hero-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 50px 30px;
+  flex-wrap: wrap;
+}
+
+.info-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-title {
+  color: white;
+  font-size: 32px;
+  max-width: 310px;
+}
+
+.subject {
+  color: #FDB446;
+  margin: 0;
+}
+
+.image-column {
+  margin-right: 20px;
+}
+
+.hero-image {
+  height: 340px;
+}
+
+/* Stats Section */
+.stats-section {
+  padding-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+}
+
+.stats-box {
+  border-radius: 30px;
+  padding: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.white-box {
+  background-color: white;
+}
+
+.orange-box {
+  background-color: #FDB346;
+}
+
+.stat {
+  background-color: #FEE2BC;
+  border-radius: 30px;
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 240px;
+}
+
+.stat-number {
+  color: #08085B;
+  font-size: 55px;
+  margin: 0;
+}
+
+.stat-label {
+  color: #08085B;
+  font-size: 20px;
+  margin: 0;
+}
+
+.stat-icon {
+  margin-top: 10px;
+}
+
+.small-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.star-icon {
+  width: 135px;
+  height: 42px;
+}
+@media (max-width: 1280px) {
+
+  .consultation-image{
+    flex-direction: column;
+  }
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .star-icon{
+    width: 105px;
+  }
+  body{
+    margin-top: 100px;
+  }
+  /* Hero Section */
+  .hero-section {
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+  }
+  .info-column {
+    text-align: center;
+    margin: 0;
+  }
+  .image-column {
+    text-align: center;
+    margin: 20px 0;
+  }
+  .hero-image {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Stats Section */
+  .stats-section {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+    padding: 30px 20px;
+  }
+  
+  .stats-box {
+    margin: 0;
+    padding: 30px;
+    width: 100%;
+  }
+  
+  .white-box,
+  .orange-box {
+    margin: 0;
+    width: 100%;
+  }
+
+  .stat {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .stat-number {
+    font-size: 40px;
+  }
+
+  .stat-label {
+    font-size: 18px;
+  }
+
+  
+
+  .small-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .star-icon {
+    width: 100px;
+    height: auto;
+  }
+}
+@media (max-width: 860px) {
+  body{
+    margin-top: 100px;
+  }
+}
+
+
+
+@media (max-width: 480px) {
+  #second_Img_GeneralQuestion{
+    width:220px ;
+  }
+
+  #generalQuestions {
+    padding: 5px !important;
+  }
+  
+  body{
+    margin-top: 100px;
+  }
+  /* Hero Section */
+  .hero-section {
+    padding: 20px;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Stats Section */
+  .stats-section {
+    padding: 20px;
+  }
+
+  .stats-box {
+    width: 80%;
+    padding: 20px;
+  }
+
+  .stat {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .stat-number {
+    font-size: 30px;
+  }
+
+  .stat-label {
+    font-size: 16px;
+  }
+
+  .stat-icon {
+    height: 35px;
+  }
+}
+
+
+.consultation-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 30px;
+  background-color: white;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.consultation-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.consultation-image img {
+  height: 290px;
+}
+
+.consultation-image.left {
+  margin-left: 10%;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.consultation-image.right {
+  margin-right: 10%;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.consultation-form-container {
+  flex: 1;
+  max-width: 500px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.consultation-section.visible .consultation-image.left {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.consultation-section.visible .consultation-image.right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.consultation-section.visible .consultation-form-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.consultation-form {
+  background-color: #d8d2d2;
+  border-radius: 30px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.consultation-form input,
+.select-wrapper select {
+  width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: white;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+}
+
+.select-wrapper {
+  position: relative;
+  width: 250px;
+}
+
+.select-wrapper select {
+  padding: 10px 40px 10px 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.select-wrapper::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 14px;
+  color: #333;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #08085b;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .consultation-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .consultation-image.left,
+  .consultation-image.right {
+    margin: 0;
+  }
+
+  .consultation-form-container {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+
+#generalQuestions-border {
+  border: 5px solid;
+  border-color: black;
+  border-radius: 30px;
+  padding: 150px 30px;
+}
+
+#generalQuestions {
+  padding: 50px;
+  padding-bottom: 50px;
+  background-color: white;
+}
+
+h1 {
+  text-align: center;
+  color: #08085B;
+  margin-bottom: 40px;
+}
+
+.question-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.question-column {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.question-item {
+  background-color: #f3f3f3;
+  border-radius: 20px;
+  padding: 20px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.question-item:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.question-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question-toggle h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  margin-top: 10px;
+}
+
+.answer.show {
+  max-height: 300px;
+  opacity: 1;
+}
+
+.question-image {
+  flex: 0 0 40%;
+  text-align: center;
+}
+
+.question-image img {
+  width: 415px;
+  height: 400px;
+  height: auto;
+}
+
+#prises_for_lessons {
+  text-align: center;
+  padding: 40px;
+}
+
+.price-card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.price-card {
+  padding-top: 90px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  width: 250px;
+  overflow: visible;
+}
+
+.lesson-count {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 40px;
+  background-color: #FDB346;
+  color: black;
+  border-radius: 30px;
+  overflow: hidden;
+  transition: height 0.4s ease;
+  z-index: 10;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lesson-desc {
+  font-size: 14px;
+  margin-top: 10px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+/* При наведенні на картку */
+.price-card:hover .lesson-count  {
+  height: 92%;
+  border-radius: 30px;
+}
+
+.purchuase_button {
+  margin-top: 40px;
+}
+
+.price-card:hover .purchuase_button {
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: black;
+  color: white;
+}
+.price-card:hover .lesson-desc {
+  opacity: 1;
+  max-height: 200px; /* або більше, залежно від контенту */
+}
+
+.purchuase_button {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  font-size: 18px;
+  background-color: black;
+  border-style: none;
+  border-radius: 30px;
+  padding: 10px;
+  margin-right: 60px;
+  margin-left: 60px;
+  z-index: 1000;
+}
+
+#prises_for_lessons {
+  background-color: black;
+  height: 100vh;
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  justify-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 0;
+  width: 100%;
+}
+
+/* Центруємо тільки на великих екранах */
+@media (min-width: 901px) {
+  .price-card.last {
+    grid-column: 2 / span 1;
+  }
+}
+
+/* 2 колонки */
+@media (max-width: 900px) {
+  .price-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 1 колонка */
+@media (max-width: 625px) {
+  .price-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideInLeft 1s ease-out forwards;
+}
+
+.slide-in-left.delay-1 {
+  animation-delay: 0.3s;
+}
+
+.slide-in-left.delay-2 {
+  animation-delay: 0.6s;
+}
+
+.slide-in-left.delay-3 {
+  animation-delay: 0.9s;
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: slideInRight 1s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-up {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideInUp 1s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Редагування профілю</title>
+  <link rel="stylesheet" href="/style/student_edit_page.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <%- include('header') %>
+  </header>
+  <h1 style="text-align: center;">Редагування профілю</h1>
+
+  <form action="/student/edit" method="POST">
+    <label for="name">Ім'я</label>
+    <input type="text" id="name" name="name" value="<%= student.name %>" required>
+
+    <label for="surname">Прізвище</label>
+    <input type="text" id="surname" name="surname" value="<%= student.surname %>" required>
+
+    <label for="grade">Клас</label>
+    <input type="text" id="grade" name="grade" value="<%= student.grade %>" required>
+
+    <label for="phone">Телефон</label>
+    <input type="text" id="phone" name="phone" value="<%= student.phone %>" required>
+
+    <button style="color: black; background-color: #FDB446;" type="submit">Зберегти зміни</button>
+  </form>
+
+  <a style="color: white; text-decoration: none; margin-top: 20px;" href="/student/dashboard">← Назад до дашборду</a>
+
+</body>
+</html>

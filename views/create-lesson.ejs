@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Створити розклад уроку</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style/create-lessons.css">
+</head>
+<body>
+  <header>
+    <%- include('header') %>
+  </header>
+
+  <h1 id="Page_Title_createLessons">Створити новий урок</h1>
+
+  <form action="/create-lesson" method="POST">
+    <label>Вчитель:</label>
+    <select name="teacherId" required>
+      <option value="">Оберіть вчителя</option>
+      <% teachers.forEach(teacher => { %>
+        <option value="<%= teacher._id %>"><%= teacher.name %> <%= teacher.surname %></option>
+      <% }) %>
+    </select>
+
+    <label>Студент:</label>
+    <select name="studentId" required>
+      <option value="">Оберіть студента</option>
+      <% students.forEach(student => { %>
+        <option value="<%= student._id %>">
+          <%= student.name %> <%= student.surname %> (Клас: <%= student.grade %>)
+        </option>
+      <% }) %>
+    </select>
+
+    <label>Предмет:</label>
+    <input type="text" name="subject" required>
+
+    <label>Дата:</label>
+    <input type="date" name="date" required>
+
+    <label>Час:</label>
+    <input type="time" name="time" required>
+
+    <button type="submit">Створити урок</button>
+  </form>
+
+  <h2>Список усіх уроків</h2>
+  <table class="lesson-table">
+    <thead>
+      <tr>
+        <th>Дата</th>
+        <th>Час</th>
+        <th>Предмет</th>
+        <th>Вчитель</th>
+        <th>Студент</th>
+        <th>Статус</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (lessons.length > 0) { %>
+        <% lessons.forEach(lesson => { %>
+          <tr>
+            <td data-label="Дата"><%= new Date(lesson.date).toLocaleDateString('uk-UA') %></td>
+            <td data-label="Час"><%= lesson.time %></td>
+            <td data-label="Предмет"><%= lesson.subject %></td>
+            <td data-label="Вчитель">
+              <%= lesson.teacherId ? lesson.teacherId.name + ' ' + lesson.teacherId.surname : 'Не вказано' %>
+            </td>
+            <td data-label="Студент">
+              <%= lesson.studentId 
+                  ? lesson.studentId.name + ' ' + lesson.studentId.surname + ' (Клас: ' + lesson.studentId.grade + ') Телефон: ' + lesson.studentId.phone 
+                  : 'Не вказано' %>
+            </td>
+            <td data-label="Статус"><%= lesson.status || 'Не вказано' %></td>
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="6">У вас поки що немає уроків.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <a href="/admin_page">Назад</a>
+</body>
+</html>
+ 

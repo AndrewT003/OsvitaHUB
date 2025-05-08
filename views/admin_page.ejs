@@ -1,0 +1,66 @@
+<!-- views/admin/admin_page.ejs -->
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Адмін панель</title>
+  <link rel="stylesheet" href="/style/admin_page.css">
+</head>
+<body>
+  <header>
+    <%- include('header') %>
+  </header>
+  
+  <h1 style="margin-top: 150px;">Адмін панель</h1>
+
+  <h2>Створення нового вчителя</h2>
+  <form action="/create-user" method="POST">
+    <input type="hidden" name="role" value="teacher">
+
+    <label>Імʼя:</label>
+    <input type="text" name="name" required>
+
+    <label>Прізвище:</label>
+    <input type="text" name="surname" required>
+
+    <label>Номер телефону:</label>
+    <input type="tel" name="phone" required>
+
+    <label>Електронна пошта:</label>
+    <input type="email" name="email" required>
+
+    <label>Пароль:</label>
+    <input type="password" name="password" required>
+
+    <button type="submit">Створити вчителя</button>
+  </form>
+
+  <a style="color: white;" href="/create-lesson">Перейти до створення уроку</a>
+
+  <!-- Форма редагування ціни та опису LessonPlan -->
+  <h2>Редагування плану уроку</h2>
+  <form action="/update-lesson-plan" method="POST">
+    <label>Виберіть план уроку:</label>
+    <select name="lessonPlanId" id="lessonPlanSelect" required>
+      <option value="" disabled selected>Оберіть план</option>
+      <% lessonPlans.forEach(plan => { %>
+        <option value="<%= plan._id %>"><%= plan.title %></option>
+      <% }) %>
+    </select>
+
+    <label>Ціна:</label>
+    <input type="number" name="price" id="price" required>
+
+    <label>Опис:</label>
+    <textarea name="description" id="description"></textarea>
+
+    <button type="submit">Зберегти зміни</button>
+  </form>
+
+  <form action="/logout" method="POST" class="logout-form">
+    <button type="submit">Вийти з акаунту</button>
+  </form>
+
+</body>
+</html>
