@@ -1,0 +1,227 @@
+body {
+    background-color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+  }
+.main_div_about_us{
+    padding-top: 100px;
+    background-color: black;
+}
+.units_lable{
+    font-size: 42px;
+}
+.our_servises_main_div_border{
+    padding: 50px;
+    border: 5px solid;
+    border-color: black;
+    border-radius: 20px;
+    
+}
+.main_text_about_us{
+    padding-bottom: 100px;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.main_div_about_us_img{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.main_text_about_us_h2{
+    color: #FDB446;
+    text-align: left;
+    margin-right: 10%;
+}
+h1{
+    text-align: center;
+    color: white;
+}
+
+.our_servises_main_div{
+    padding: 50px;
+    background-color: white;
+}
+.our_servises_main_info_div{
+    padding-left: 10%;
+    padding-right: 10%;
+    gap: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.our_servises_div_for_lessons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.lessons_img{
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+}
+.lessons_img img{
+    height: 150px;
+}
+#lessons_description{
+    align-items: center;
+    margin: 10%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+}
+#lessons_description_border{
+    padding: 30px;
+    border: 3px solid;
+    border-color: black;
+    border-radius: 20px;
+    width: 300px;   
+}
+.lessons_name{
+    margin-right: 100px;
+    margin-left: 0;
+    font-weight: 100;
+    border-radius: 20px;
+    color: white;
+    padding: 15px;
+    background-color: #7B76A9;
+}
+#about_us_text_under_lesson{
+    padding-bottom: 40px;
+    color: white;
+    font-weight: 100;
+    margin-top: 10%;
+    margin-left: 7%;
+    margin-right: 7%;
+    border-bottom: 3px solid;
+    border-color: white;
+}
+@media (max-width: 510px) {
+  .our_servises_main_div{
+    padding: 15px;
+  }
+
+
+}
+
+
+@media (max-width: 1024px) {
+    .main_text_about_us {
+      flex-direction: column;
+      text-align: center;
+      padding: 30px 20px;
+    }
+  
+    .main_div_about_us_img {
+      margin: 0 auto;
+    }
+  
+    .main_text_about_us_h2 {
+      margin: 20px 0 0;
+      text-align: center;
+      font-size: 18px;
+    }
+  
+    .our_servises_main_info_div {
+      flex-direction: column;
+      text-align: center;
+      gap: 20px;
+      padding: 20px;
+    }
+  
+    #lessons_description {
+      flex-direction: column;
+      align-items: center;
+      margin: 5%;
+      gap: 40px;
+    }
+  
+    .lessons_img {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .lessons_name {
+      margin: 0 0 10px;
+      font-size: 18px;
+      width: 80%;
+    }
+  
+    #lessons_description_border {
+      width: 90%;
+      font-size: 18px;
+      padding: 20px;
+    }
+  
+    #about_us_text_under_lesson {
+      margin: 30px 5%;
+      font-size: 16px;
+      padding-bottom: 30px;
+    }
+  
+    .units_lable {
+      font-size: 32px;
+    }
+  
+    h2 {
+      font-size: 18px;
+    }
+  
+    .our_servises_main_div_border {
+      padding: 20px;
+    }
+  }
+/* Початкові стани */
+.animate-about-title {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: all 1s ease;
+}
+
+.animate-about-img {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 1s ease 0.3s;
+}
+
+.animate-about-text {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 1s ease 0.3s;
+}
+
+/* Коли елемент в полі зору */
+.animated {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+}
+
+
+/* Анімація для секції "НАШІ ПОСЛУГИ" */
+.animate-services-title {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: all 1s ease;
+}
+
+.animate-services-img {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 1s ease 0.1s;
+}
+
+.animate-services-text {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 1s ease 0.1s;
+}
+
+.animate-lessons {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 1s ease 0.1s;
+}
+
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="/style/student_page.css">
+  <title>Редагування профілю</title>
+</head>
+<body>
+  <header>
+    <%- include('header') %>
+  </header>
+  <div class="container">
+    <h1>Редагувати профіль</h1>
+
+    <form action="/teacher/edit" method="POST" enctype="multipart/form-data">
+      <div class="info-block">
+        <p><span class="label">Імʼя:</span> <input type="text" name="name" value="<%= teacher.name %>" required></p>
+        <p><span class="label">Прізвище:</span> <input type="text" name="surname" value="<%= teacher.surname %>" required></p>
+        <p><span class="label">Телефон:</span> <input type="tel" name="phone" value="<%= teacher.phone %>" required></p>
+        <p><span class="label">Біографія:</span> <textarea name="bio"><%= teacher.bio %></textarea></p>
+        <p><span class="label">Досвід:</span> <input type="number" name="experience" value="<%= teacher.experience %>" required></p>
+        <p><span class="label">Предмети (через кому):</span> <input type="text" name="subjects" value="<%= teacher.subjects.join(', ') %>" required></p>
+    
+        <% if (teacher.avatar) { %>
+          <p><span class="label">Поточне фото:</span><br>
+            <img src="<%= teacher.avatar %>" style="width: 120px; height: 120px; object-fit: cover; border-radius: 50%;">
+          </p>
+        <% } %>
+    
+        <p><span class="label">Нове фото:</span> <input type="file" name="avatar" accept="image/*"></p>
+      </div>
+    
+      <button type="submit">Зберегти зміни</button>
+    </form>
+    
+
+    <div class="profile-buttons">
+        <a href="/teacher/dashboard" class="cancel-button">Скасувати</a>
+    </div>
+  </div>
+</body>
+</html>

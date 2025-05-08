@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/header.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/teacher_detail.css">
+    <title>Деталі викладача</title>
+</head>
+<body>
+    <header>
+        <%- include('header') %>
+    </header>
+
+    <div class="teacher-detail-container">
+        <div class="teacher-detail-card">
+            <img class="teacher-avatar" src="<%= teacher.avatar ? teacher.avatar : '/img/default-avatar.png' %>" alt="Аватар">
+            <h2><%= teacher.name %> <%= teacher.surname %></h2>
+            <p><strong>Телефон:</strong> <%= teacher.phone %></p>
+            <p><strong>Предмети:</strong> <%= teacher.subjects.join(', ') %></p>
+            <p><strong>Біографія:</strong> <%= teacher.bio || 'Не вказано' %></p>
+            <% 
+            const exp = teacher.experience;
+            const experienceText = !exp && exp !== 0
+              ? 'Не вказано'
+              : `${exp} ${exp % 10 === 1 && exp % 100 !== 11 ? 'рік' : (exp % 10 >= 2 && exp % 10 <= 4 && (exp % 100 < 10 || exp % 100 >= 20) ? 'роки' : 'років')}`;
+            %>
+          
+            <p><strong>Досвід:</strong> <%= experienceText %></p>
+            <a href="/teachers" class="back-to-teachers">Назад до всіх викладачів</a>
+        </div>
+    </div>
+
+    <script src="/js/animations_about_us.js"></script>
+</body>
+</html>

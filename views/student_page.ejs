@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style/student_page.css">
+  <title>Дашборд учня</title>
+</head>
+<body>
+  <header>
+    <%- include('header') %>
+  </header>
+
+  <div class="container">
+    <h1>Привіт, <%= student.name %>!</h1>
+
+    <div class="info-block">
+      <p><span class="label">Ім’я:</span> <%= student.name %></p>
+      <p><span class="label">Прізвище:</span> <%= student.surname %></p>
+      <p><span class="label">Клас:</span> <%= student.grade %></p>
+      <p><span class="label">Телефон:</span> <%= student.phone %></p>
+    </div>
+
+    <h2>Ваші уроки</h2>
+    <% if (lessons.length > 0) { %>
+      <ul class="lessons">
+        <% lessons.forEach(lesson => { %>
+          <li>
+            <strong>Предмет:</strong> <%= lesson.subject %><br>
+            <strong>Дата і час:</strong> 
+            <%= moment(lesson.date).tz('Europe/Kyiv').format('YYYY-MM-DD HH:mm') %><br>
+
+            <% if (lesson.teacherId) { %>
+              <strong>Вчитель:</strong> <%= lesson.teacherId.name %> <%= lesson.teacherId.surname %><br>
+              <strong>Телефон:</strong> <%= lesson.teacherId.phone %><br>
+            <% } else { %>
+              <em>Інформація про вчителя недоступна</em>
+            <% } %>
+          </li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>У вас поки що немає уроків.</p>
+    <% } %>
+
+    <div class="profile-buttons">
+      <a href="/student/edit" class="edit-button">Редагувати профіль</a>
+      <a href="/logout" class="logout-button">Вийти</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+body {
+  background-color: black;
+  margin-top: 100px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+
+}
+
+/* Загальні стилі для блоку викладачів */
+.teachers-preview-container {
+  margin: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 колонки на великих екранах */
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Середні екрани: 2 колонки */
+@media (max-width: 900px) {
+  .teachers-preview-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Малі екрани: 1 колонка */
+@media (max-width: 600px) {
+  .teachers-preview-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.teacher-card {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 100%; /* оновлено: ширина задається грідом */
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.teacher-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.teacher-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.teacher-card p {
+  font-size: 14px;
+  color: black;
+}
+
+.teacher-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #FDB446;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.teacher-card a:hover {
+  text-decoration: underline;
+}
+
+/* Стилі для кнопки "Переглянути всіх викладачів" */
+.view-all-link {
+  color: #FDB446;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.view-all-link:hover {
+  text-decoration: underline;
+}
