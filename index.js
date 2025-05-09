@@ -12,6 +12,9 @@ import connectDB from './server/js/database.js';
 import { cleanUpLessons } from './server/middleware/cleanupTasks.js';
 import teacherRoutes from './server/routes/teacher.js';
 import moment from 'moment-timezone';
+import emailRoutes from './server/routes/email.js';
+
+
 
 const app = express();
 const PORT = 3000;
@@ -47,6 +50,8 @@ app.use(authRoutes);
 login_page(app);
 app.use('/student', studentRoutes);
 app.use('/teacher', teacherRoutes);
+app.use(emailRoutes); // або app.use('/email', emailRoutes) якщо хочеш префікс
+
 
 // Головна сторінка
 app.get('/', async (req, res) => {
@@ -66,6 +71,14 @@ connectDB().then(async () => {
 
   // (Необов’язково) автоматичне очищення щогодини
   setInterval(cleanUpLessons, 60 * 60 * 1000); // кожну годину
+
+
+  // Обробник 404 — якщо маршрут не знайдено
+app.use((req, res, next) => {
+  console.warn(`Маршрут не знайдено: ${req.originalUrl}`);
+  res.redirect('/');
+});
+
 
   // Запуск сервера
   app.listen(PORT, () => {

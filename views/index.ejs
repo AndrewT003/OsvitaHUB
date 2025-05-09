@@ -6,146 +6,158 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style/header.css">
   <link rel="stylesheet" href="/style/index.css">
+  <link rel="stylesheet" href="/style/alert_style.css">
   <title>Document</title>
 </head>
 <body>
-  <header>
-    <%- include('header') %>
-  </header>
-
-  <div id="FirsPartMainPage">
-    <section class="hero-section">
-      <div class="info-column">
-        <h2 class="section-title slide-in-left">ОНЛАЙН-ШКОЛА РЕПЕТИТОРСТВА</h2>
-        <h2 class="subject slide-in-left delay-1">УКРАЇНСЬКА МОВА</h2>
-        <h2 class="subject slide-in-left delay-2">МАТЕМАТИКА</h2>
-        <h2 class="subject slide-in-left delay-3">ІСТОРІЯ</h2>
-      </div>
-      <div class="image-column">
-        <img class="hero-image slide-in-right" src="/img/mainPageDesignImg.png" alt="Основне зображення">
-      </div>
-    </section>
-
-    <section class="stats-section slide-in-up">
-      <div class="stats-box white-box">
-        <div class="stat">
-          <h2 class="stat-number">1000+</h2>
-          <h4 class="stat-label">учнів отримали допомогу до підготовки НМТ</h4>
-          <img src="/img/likeMainPageImg.png" alt="лайк" class="stat-icon small-icon">
+  <div id="pageContent">
+    <header>
+      <%- include('header') %>
+    </header>
+  
+    <div id="FirsPartMainPage">
+      <section class="hero-section">
+        <div class="info-column">
+          <h2 class="section-title slide-in-left">ОНЛАЙН-ШКОЛА РЕПЕТИТОРСТВА</h2>
+          <h2 class="subject slide-in-left delay-1">УКРАЇНСЬКА МОВА</h2>
+          <h2 class="subject slide-in-left delay-2">МАТЕМАТИКА</h2>
+          <h2 class="subject slide-in-left delay-3">ІСТОРІЯ</h2>
         </div>
-        <div class="stat">
-          <h2 class="stat-number">95%</h2>
-          <h4 class="stat-label">позитивних відгуків</h4>
-          <img src="/img/starsMainPageImg.png" alt="зірки" class="stat-icon star-icon">
+        <div class="image-column">
+          <img class="hero-image slide-in-right" src="/img/mainPageDesignImg.png" alt="Основне зображення">
         </div>
-      </div>
-
-      <div class="stats-box orange-box">
-        <div class="stat">
-          <h2 class="stat-number">50+</h2>
-          <h4 class="stat-label">різних методик підготовки учнів</h4>
+      </section>
+  
+      <section class="stats-section slide-in-up">
+        <div class="stats-box white-box">
+          <div class="stat">
+            <h2 class="stat-number">1000+</h2>
+            <h4 class="stat-label">учнів отримали допомогу до підготовки НМТ</h4>
+            <img src="/img/likeMainPageImg.png" alt="лайк" class="stat-icon small-icon">
+          </div>
+          <div class="stat">
+            <h2 class="stat-number">95%</h2>
+            <h4 class="stat-label">позитивних відгуків</h4>
+            <img src="/img/starsMainPageImg.png" alt="зірки" class="stat-icon star-icon">
+          </div>
         </div>
-      </div>
-    </section>
-  </div>
-
-  <section class="consultation-section" id="consultationSection">
-    <div class="consultation-image left">
-      <img src="/img/image1ForForm.png" alt="Форма ліворуч">
-    </div>
-
-    <div class="consultation-form-container">
-      <h2 class="form-title">Запишіться на консультацію</h2>
-      <form action="#" method="POST" class="consultation-form">
-        <label for="name">Ім'я:</label>
-        <input type="text" id="name" name="name" required placeholder="Введіть ваше ім'я" />
-
-        <label for="subject">Предмет:</label>
-        <div class="select-wrapper">
-          <select id="subject" name="subject" required>
-            <option></option>
-            <option value="ukraine">Українська мова</option>
-            <option value="math">Математика</option>
-            <option value="history">Історія</option>
-          </select>
-        </div>
-
-        <label for="grade">Клас учня:</label>
-        <div class="select-wrapper">
-          <select id="grade" name="grade" required>
-            <option></option>
-            <% for (let i = 1; i <= 11; i++) { %>
-              <option value="<%= i %>"><%= i %></option>
-            <% } %>
-          </select>
-        </div>
-
-        <label for="email">Електронна пошта:</label>
-        <input type="email" id="email" name="email" required placeholder="Введіть вашу електронну пошту" />
-
-        <label for="phone">Номер телефону:</label>
-        <input type="tel" id="phone" name="phone" required placeholder="Введіть номер телефону" />
-
-        <button type="submit" class="submit-button">Відправити</button>
-      </form>
-    </div>
-
-    <div class="consultation-image right">
-      <img src="/img/image2ForForm.png" alt="Форма праворуч" />
-    </div>
-  </section>
-
-  <div id="generalQuestions">
-    <div id="generalQuestions-border">
-      <h1>ПОШИРЕНІ ЗАПИТАННЯ</h1>
-      <section class="question-layout">
-        <div class="question-column">
-          <% const questions = [
-            { q: "Скільки коштує навчання в OsvitaHUB?", a: "Навчання в OsvitaHUB залежить від кількості занять та обраного предмета." },
-            { q: "Як можна оплатити навчання?", a: "Ми приймаємо оплату через банківські перекази, картки або сервіси онлайн-оплати." },
-            { q: "Скільки триває урок?", a: "Зазвичай тривалість одного уроку — 60 хвилин." },
-            { q: "Які абонементи уроків існують?", a: "Абонементи на 4, 8, 12 або більше занять. Індивідуальні плани доступні." },
-            { q: "Що таке урок-діагностика?", a: "Це вступне заняття, де викладач оцінює рівень знань учня." }
-          ]; %>
-          <% questions.forEach(({ q, a }) => { %>
-            <div class="question-item">
-              <div class="question-toggle">
-                <h3><%= q %></h3>
-                <img class="arrow" src="/img/down_Arrow.png" alt="▼">
-              </div>
-              <div class="answer">
-                <p><%= a %></p>
-              </div>
-            </div>
-          <% }) %>
-        </div>
-        <div class="question-image">
-          <img id="second_Img_GeneralQuestion" src="/img/GeneralQuastionImg.png" alt="FAQ" />
+  
+        <div class="stats-box orange-box">
+          <div class="stat">
+            <h2 class="stat-number">50+</h2>
+            <h4 class="stat-label">різних методик підготовки учнів</h4>
+          </div>
         </div>
       </section>
     </div>
-  </div>
-
-  <div id="prises_for_lessons">
-    <h2 style="color: white;">ВАРТІСТЬ НАВЧАННЯ</h2>
-    <h2 style="color: white;">(За один урок)</h2>
-
-    <div class="price-grid">
-      <% lessonPlans.forEach((plan, index) => { %>
-        <div class="price-card <%= index === lessonPlans.length - 1 ? 'last' : '' %>">
-          <div class="lesson-count">
-            <h2><%= plan.lessonCount %> Уроків</h2>
-            <p class="lesson-desc"><%= plan.description %></p>
+  
+    <section class="consultation-section" id="consultationSection">
+      <div class="consultation-image left">
+        <img src="/img/image1ForForm.png" alt="Форма ліворуч">
+      </div>
+  
+      <div class="consultation-form-container">
+        <h2 class="form-title">Запишіться на консультацію</h2>
+        <form action="/send" method="POST" class="consultation-form">
+          <label for="name">Ім'я:</label>
+          <input type="text" id="name" name="name" required placeholder="Введіть ваше ім'я" />
+  
+          <label for="subject">Предмет:</label>
+          <div class="select-wrapper">
+            <select id="subject" name="subject" required>
+              <option></option>
+              <option value="Українська мова">Українська мова</option>
+              <option value="Математика">Математика</option>
+              <option value="Історія">Історія</option>
+            </select>
           </div>
-          <h3><%= plan.title %></h3>
-          <h3><%= plan.price %> грн</h3>
-          <button class="purchuase_button">Детальніше</button>
-        </div>
-      <% }) %>
+  
+          <label for="grade">Клас учня:</label>
+          <div class="select-wrapper">
+            <select id="grade" name="grade" required>
+              <option></option>
+              <% for (let i = 1; i <= 11; i++) { %>
+                <option value="<%= i %>"><%= i %></option>
+              <% } %>
+            </select>
+          </div>
+  
+          <label for="email">Електронна пошта:</label>
+          <input type="email" id="email" name="email" required placeholder="Введіть вашу електронну пошту" />
+  
+          <label for="phone">Номер телефону:</label>
+          <input type="tel" id="phone" name="phone" required placeholder="Введіть номер телефону" />
+  
+          <button type="submit" class="submit-button">Відправити</button>
+        </form>
+      </div>
+  
+      <div class="consultation-image right">
+        <img src="/img/image2ForForm.png" alt="Форма праворуч" />
+      </div>
+    </section>
+
+    <div id="generalQuestions">
+      <div id="generalQuestions-border">
+        <h1>ПОШИРЕНІ ЗАПИТАННЯ</h1>
+        <section class="question-layout">
+          <div class="question-column">
+            <% const questions = [
+              { q: "Скільки коштує навчання в OsvitaHUB?", a: "Навчання в OsvitaHUB залежить від кількості занять та обраного предмета." },
+              { q: "Як можна оплатити навчання?", a: "Ми приймаємо оплату через банківські перекази, картки або сервіси онлайн-оплати." },
+              { q: "Скільки триває урок?", a: "Зазвичай тривалість одного уроку — 60 хвилин." },
+              { q: "Які абонементи уроків існують?", a: "Абонементи на 4, 8, 12 або більше занять. Індивідуальні плани доступні." },
+              { q: "Що таке урок-діагностика?", a: "Це вступне заняття, де викладач оцінює рівень знань учня." }
+            ]; %>
+            <% questions.forEach(({ q, a }) => { %>
+              <div class="question-item">
+                <div class="question-toggle">
+                  <h3><%= q %></h3>
+                  <img class="arrow" src="/img/down_Arrow.png" alt="▼">
+                </div>
+                <div class="answer">
+                  <p><%= a %></p>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+          <div class="question-image">
+            <img id="second_Img_GeneralQuestion" src="/img/GeneralQuastionImg.png" alt="FAQ" />
+          </div>
+        </section>
+      </div>
+    </div>
+  
+    <div id="prises_for_lessons">
+      <h2 style="color: white;">ВАРТІСТЬ НАВЧАННЯ</h2>
+      <h2 style="color: white;">(За один урок)</h2>
+  
+      <div class="price-grid">
+        <% lessonPlans.forEach((plan, index) => { %>
+          <div class="price-card <%= index === lessonPlans.length - 1 ? 'last' : '' %>">
+            <div class="lesson-count">
+              <h2><%= plan.lessonCount %> Уроків</h2>
+              <p class="lesson-desc"><%= plan.description %></p>
+            </div>
+            <h3><%= plan.title %></h3>
+            <h3><%= plan.price %> грн</h3>
+            <button class="purchuase_button">Детальніше</button>
+          </div>
+        <% }) %>
+      </div>
     </div>
   </div>
 
+  <!-- Контейнер для alert -->
+  <div id="alertMessage" class="alert">
+    <div class="alert-icon"></div>
+    <div class="alert-text"></div>
+    <button class="close-btn">&times;</button>
+  </div>
+
+
   <script src="/js/quastionBlocks.js"></script>
+  <script src="/js/alert_form_animation.js"></script>
   <script src="/js/animations_main_page.js"></script>
 </body>
 </html>

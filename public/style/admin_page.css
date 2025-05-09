@@ -1,6 +1,6 @@
 body {
-    background-color: #000;
-    color: #FDB446;
+    background-image: url(/img/back-fone-blure.png);
+    background-size: cover;    color: #FDB446;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;

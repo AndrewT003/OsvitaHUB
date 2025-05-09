@@ -1,8 +1,8 @@
 /* Загальні стилі */
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #000000;
-    color: #333;
+    background-image: url(/img/back-fone-blure.png);
+    background-size: cover;    color: #333;
     margin: 0;
     padding: 30px;
     display: flex;

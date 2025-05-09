@@ -2,10 +2,14 @@ html {
   scroll-behavior: smooth;
 }
 body {
+  background-color: black;
   margin-top: 100px;
   background-color: black;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
+}
+#FirsPartMainPage{
+  background-color: black;
 }
 
 /* Hero Section */
@@ -188,7 +192,11 @@ body {
   }
 }
 
-
+@media (max-width: 955px) {
+  .question-layout{
+    justify-content: center !important;
+  }
+}
 
 @media (max-width: 480px) {
   #second_Img_GeneralQuestion{
@@ -473,6 +481,8 @@ h1 {
 }
 
 #prises_for_lessons {
+  background-image: url(/img/back-fone-blure.png);
+  background-size: cover;
   text-align: center;
   padding: 40px;
 }
@@ -561,8 +571,8 @@ h1 {
 }
 
 #prises_for_lessons {
-  background-color: black;
-  height: 100vh;
+  min-height: 100vh;
+  overflow-y: auto;
 }
 
 .price-grid {

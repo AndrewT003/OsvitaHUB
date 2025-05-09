@@ -4,10 +4,10 @@ body {
     padding-top: 200px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    background-color: #000000;
-    margin: 0;
+    background-image: url(/img/back-fone-blure.png);
+    background-size: cover;    margin: 0;
     padding: 30px;
-    color: #333;
+    color: black;
   }
 
   .container {
