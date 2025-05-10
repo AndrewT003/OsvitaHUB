@@ -186,3 +186,16 @@ header.revealed-by-hover {
   }
 }
 
+
+
+.profile-circle {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Уроки</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="/style/lessons.css">
+  <link rel="stylesheet" href="/style/alert_purchuase.css">
+</head>
+<body>
+  <header>
+    <%- include('header') %> <!-- Підключення заголовка -->
+  </header>
+  
+  <h1 class="page-title">Перелік уроків</h1>
+  <div class="lesson-list">
+    <% lessons.forEach(lesson => { %>
+      <div class="lesson-card">
+        <div class="lesson-info">
+          <h2><%= lesson.title %></h2>
+          <p><strong>Кількість уроків:</strong> <%= lesson.lessonCount %></p>
+          <p><strong>Ціна:</strong> <%= lesson.price %> грн</p>
+        </div>
+        <div class="lesson-description">
+          <p><%= lesson.description %></p>
+          <a href="#" class="buy-button" data-id="<%= lesson._id %>" data-title="<%= lesson.title %>">Придбати</a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+<!-- Контейнер для alert -->
+<div id="alertMessage" class="custom-alert success">
+  <div class="custom-alert-icon"></div>
+  <div class="custom-alert-text">Покупку оформлено. Очікуйте дзвінок!</div>
+  <button class="custom-close-btn" onclick="closeAlert()">&times;</button>
+</div>
+
+<script src="/js/script_for_purchuase_lessons.js"></script>
+</body>
+</html>

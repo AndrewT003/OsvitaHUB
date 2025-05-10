@@ -369,6 +369,20 @@ body {
   cursor: pointer;
 }
 
+@media (max-width: 1280px) {
+  .consultation-image.left{
+    display: none;
+  }
+  .consultation-section{
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  .consultation-image.right{
+    margin: 0;
+  }
+}
+
 @media (max-width: 768px) {
   .consultation-section {
     flex-direction: column;
@@ -482,46 +496,42 @@ h1 {
 
 #prises_for_lessons {
   background-image: url(/img/back-fone-blure.png);
-  background-size: cover;
+    background-size: cover;    margin: 0;
   text-align: center;
-  padding: 40px;
-}
-
-.price-card-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-top: 30px;
+  padding: 60px 20px;
+  color: white;
 }
 
 .price-card {
+  background-color: #1f1f1f;
+  border-radius: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
   padding-top: 90px;
   padding-bottom: 30px;
+  width: 250px;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
-  background-color: #fff;
-  border-radius: 30px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  width: 250px;
-  overflow: visible;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.price-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
 }
 
 .lesson-count {
+  background-color: #FDB346;
+  color: #000;
+  border-radius: 30px;
   position: absolute;
   top: 0;
   left: 0;
+  padding: 15px;
   height: 40px;
-  background-color: #FDB346;
-  color: black;
-  border-radius: 30px;
-  overflow: hidden;
   transition: height 0.4s ease;
   z-index: 10;
-  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -535,45 +545,45 @@ h1 {
   max-height: 0;
   overflow: hidden;
   transition: opacity 0.3s ease, max-height 0.3s ease;
+  color: #ffffff;
 }
 
-/* При наведенні на картку */
-.price-card:hover .lesson-count  {
+.price-card:hover .lesson-count {
   height: 92%;
   border-radius: 30px;
 }
 
-.purchuase_button {
-  margin-top: 40px;
-}
-
-.price-card:hover .purchuase_button {
-  transition: background-color 0.3s ease, color 0.3s ease;
-  background-color: black;
-  color: white;
-}
 .price-card:hover .lesson-desc {
   opacity: 1;
-  max-height: 200px; /* або більше, залежно від контенту */
+  max-height: 200px;
+}
+
+.price-card h3 {
+  color: #ffffff;
+  margin: 10px 0;
 }
 
 .purchuase_button {
+  z-index: 1050;
+  margin-top: 40px;
   font-family: 'Montserrat', sans-serif;
-  color: white;
+  color: black;
   font-size: 18px;
-  background-color: black;
-  border-style: none;
+  background-color: #FDB346;
+  border: none;
   border-radius: 30px;
   padding: 10px;
   margin-right: 60px;
   margin-left: 60px;
-  z-index: 1000;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-#prises_for_lessons {
-  min-height: 100vh;
-  overflow-y: auto;
+.price-card:hover .purchuase_button {
+  background-color: white;
+  color: black;
 }
+
 
 .price-grid {
   display: grid;

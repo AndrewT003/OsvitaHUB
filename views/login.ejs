@@ -26,7 +26,10 @@
           </div>
           <div class="input-group">
             <label for="password">Пароль</label>
-            <input type="password" name="password" required>
+            <div class="password-wrapper">
+              <input type="password" name="password" required>
+              <button type="button" class="toggle-password" onclick="togglePassword(this)">🔓</button>
+            </div>
           </div>
           <input id="submit-jogin-button" type="submit" value="Увійти">
           <p id="switch-link-registr" class="switch-link" onclick="showRegister()">Немає акаунту? Зареєструйтесь</p>
@@ -59,7 +62,10 @@
           </div>
           <div class="input-group">
             <label for="password">Пароль</label>
-            <input type="password" name="password" required>
+            <div class="password-wrapper">
+              <input type="password" name="password" required>
+              <button type="button" class="toggle-password" onclick="togglePassword(this)">🔓</button>
+            </div>
           </div>
           <input type="submit" value="Зареєструватися">
           <p class="switch-link" onclick="showLogin()">Вже маєте акаунт? Увійдіть</p>
@@ -70,6 +76,17 @@
   </div>
 
   <script>
+    function togglePassword(button) {
+      const input = button.previousElementSibling;
+      if (input.type === 'password') {
+        input.type = 'text';
+        button.textContent = '🔒';
+      } else {
+        input.type = 'password';
+        button.textContent = '🔓';
+      }
+    }
+
     function showRegister() {
       document.getElementById('formsContainer').style.transform = 'translateX(-50%)';
     }

@@ -6,7 +6,7 @@
 <div class="center-zone">
   <nav id="NaviLinks">
       <a href="/about_us">ПРО НАС</a>
-      <a href="#">УРОКИ</a>
+      <a href="/lessons">УРОКИ</a>
       <a href="#">ВІДГУКИ</a>
       <a href="/#prises_for_lessons">ВАРТІСТЬ</a>
   </nav>
@@ -14,7 +14,26 @@
 
 <div id="contact-profile">
   <a href="#" id="contactLink">КОНТАКТИ</a>
-  <a href="/login_page"><img id="ProfileImg" height="70px" width="70px" src="/img/ProfileImg.png" alt="Профіль"></a>
+  <!-- Перевіряємо, чи користувач авторизований -->
+  <% if (user) { %>
+    <!-- Якщо авторизований, показуємо ініціали або букву A для адміну -->
+    <% if (user.role === 'admin') { %>
+      <a href="/login_page">
+        <div class="profile-circle" style="background-color: #fdb446; color: white; font-size: 22px;">
+          A
+        </div>
+      </a>
+    <% } else { %>
+      <a style="text-decoration: none;" href="/login_page">
+        <div class="profile-circle" style="background-color: #fdb446; color: white; font-size: 22px; text-decoration: none;">
+          <%= user.name.charAt(0).toUpperCase() + user.surname.charAt(0).toUpperCase() %>
+        </div>
+      </a>
+    <% } %>
+  <% } else { %>
+    <!-- Якщо не авторизований, показуємо стандартну картинку -->
+    <a href="/login_page"><img id="ProfileImg" height="70px" width="70px" src="/img/ProfileImg.png" alt="Профіль"></a>
+  <% } %>
 </div>
 
 <!-- Кнопка для відкриття меню на мобільних -->

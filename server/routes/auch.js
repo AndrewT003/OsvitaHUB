@@ -3,6 +3,8 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/Users.js';
 import Student from '../models/Student.js'; // ⬅️ імпорт моделі студента
+import passport from 'passport';
+
 
 const router = express.Router();
 
@@ -52,34 +54,27 @@ router.post('/register', async (req, res) => {
 });
 
 
-// ▶️ Авторизація
-router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const user = await User.findOne({ email });
-    if (!user) return res.status(400).send("Користувача не знайдено");
+router.post('/login', passport.authenticate('local', {
+  failureRedirect: '/login_page',
+}), (req, res) => {
+  console.log('🔐 Успішний вхід:', req.user);
 
-    const isMatch = await bcrypt.compare(password, user.passwordHash);
-    if (!isMatch) return res.status(400).send("Невірний пароль");
+  // Зберігаємо дані у сесію
+  req.session.userId = req.user._id;
+  req.session.role = req.user.role;
 
-    req.session.userId = user._id;
-    req.session.role = user.role;
+  // Перенаправлення за роллю
+  const role = req.user.role;
+  if (role === 'student') return res.redirect('/student/dashboard');
+  if (role === 'teacher') return res.redirect('/teacher/dashboard');
+  if (role === 'admin') return res.redirect('/admin_page');
 
-    console.log('Сесія користувача:', req.session);
-
-    if (user.role === 'student') {
-      res.redirect('/student/dashboard');
-    } else if (user.role === 'admin') {
-      res.redirect('/admin_page');
-    }
-    else if (user.role === 'teacher') {
-      res.redirect('/teacher/dashboard');
-    }
-  } catch (err) {
-    console.error('Помилка при вході:', err);
-    res.status(500).send("Помилка входу");
-  }
+  return res.redirect('/login_page'); // fallback
 });
+
+
+
+
 
 // ▶️ Вихід
 router.get('/logout', (req, res) => {

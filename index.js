@@ -2,6 +2,8 @@ import path from 'path';
 import express from 'express';
 import { fileURLToPath } from 'url';
 import session from 'express-session';
+import passport from 'passport';
+import './server/js/passportConfig.js'; // Ваш конфігураційний файл для Passport
 import AboutUsPage from './server/routes/pages.js';
 import adminRoutes from './server/routes/admin.js';
 import studentRoutes from './server/routes/student.js';
@@ -13,7 +15,8 @@ import { cleanUpLessons } from './server/middleware/cleanupTasks.js';
 import teacherRoutes from './server/routes/teacher.js';
 import moment from 'moment-timezone';
 import emailRoutes from './server/routes/email.js';
-
+import lessonRoutes from './server/routes/lessons.js';
+import purchaseRoutes from './server/routes/purchuase.js';
 
 
 const app = express();
@@ -39,9 +42,18 @@ app.use(session({
   saveUninitialized: false,
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Статика
 app.use(express.static('public'));
 app.use(express.static('server'));
+
+// Додаємо інформацію про користувача у всі шаблони EJS
+app.use((req, res, next) => {
+  res.locals.user = req.user || null;  // Передаємо user у локальні змінні для всіх шаблонів
+  next();
+});
 
 // Основні маршрути
 AboutUsPage(app);
@@ -51,6 +63,8 @@ login_page(app);
 app.use('/student', studentRoutes);
 app.use('/teacher', teacherRoutes);
 app.use(emailRoutes); // або app.use('/email', emailRoutes) якщо хочеш префікс
+app.use(lessonRoutes);
+app.use('/api', purchaseRoutes);
 
 
 // Головна сторінка
@@ -71,14 +85,6 @@ connectDB().then(async () => {
 
   // (Необов’язково) автоматичне очищення щогодини
   setInterval(cleanUpLessons, 60 * 60 * 1000); // кожну годину
-
-
-  // Обробник 404 — якщо маршрут не знайдено
-app.use((req, res, next) => {
-  console.warn(`Маршрут не знайдено: ${req.originalUrl}`);
-  res.redirect('/');
-});
-
 
   // Запуск сервера
   app.listen(PORT, () => {

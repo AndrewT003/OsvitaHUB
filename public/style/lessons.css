@@ -1,0 +1,142 @@
+body {
+    background-image: url(/img/back-fone-blure.png);
+    background-size: cover;    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    padding: 20px;
+  }
+  
+  .page-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #FDB346;
+  }
+  
+  .lesson-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .lesson-card {
+    display: flex;
+    flex-direction: row;
+    background-color: #1c1c1c;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  
+  .lesson-info {
+    flex: 1;
+    background-color: #222;
+    padding: 30px;
+    border-right: 2px solid #FDB346;
+  }
+  
+  .lesson-description {
+    flex: 2;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .buy-button {
+    margin-top: 20px;
+    display: inline-block;
+    background-color: #FDB346;
+    color: black;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+    align-self: flex-start;
+  }
+  
+  .buy-button:hover {
+    background-color: #e29d30;
+  }
+
+  /* ======= Адаптивність ======= */
+@media (max-width: 768px) {
+    .lesson-card {
+      flex-direction: column;
+    }
+  
+    .lesson-info {
+      border-right: none;
+      border-bottom: 2px solid #FDB346;
+      text-align: center;
+    }
+  
+    .lesson-description {
+      text-align: center;
+      align-items: center;
+    }
+  
+    .buy-button {
+      align-self: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .page-title {
+      font-size: 22px;
+    }
+  
+    .lesson-info, .lesson-description {
+      padding: 20px;
+    }
+  
+    .buy-button {
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+  }
+
+
+
+  .modal-backdrop {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  
+  .modal {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  }
+  
+  .modal input {
+    margin: 10px 0;
+    padding: 8px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .modal button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #FDB346;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  
