@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login / Register</title>
   <link rel="stylesheet" href="/style/login_page.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style/header.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -15,46 +15,52 @@
 
   <div class="form-wrapper">
     <div class="forms-container" id="formsContainer">
-      
       <!-- Форма логіну -->
       <div class="form login-form">
-        <h2>Увійти</h2>
-        <form action="/login" method="POST">
+        <h2 style="color: #FDB346;">Увійти</h2>
+        <form action="/login" method="POST" id="loginForm">
           <div class="input-group">
             <label for="email">Email</label>
             <input type="email" name="email" required>
+            <span class="error-message" id="login-email-error"></span>
           </div>
           <div class="input-group">
             <label for="password">Пароль</label>
             <div class="password-wrapper">
-              <input type="password" name="password" required>
+              <input type="password" name="password" id="login-password" required>
               <button type="button" class="toggle-password" onclick="togglePassword(this)">🔓</button>
             </div>
+            <span class="error-message" id="login-password-error"></span>
           </div>
-          <input id="submit-jogin-button" type="submit" value="Увійти">
+          <input id="submit-login-button" type="submit" value="Увійти">
           <p id="switch-link-registr" class="switch-link" onclick="showRegister()">Немає акаунту? Зареєструйтесь</p>
+          <p style="text-align: center;"><a href="/forgot-password">Забули пароль?</a></p>
         </form>
       </div>
 
       <!-- Форма реєстрації -->
       <div class="form register-form">
-        <h2>Реєстрація</h2>
-        <form action="/register" method="POST">
+        <h2 style="color: #FDB346;">Реєстрація</h2>
+        <form action="/register" method="POST" id="registerForm">
           <div class="input-group">
             <label for="name">Ім’я</label>
             <input type="text" name="name" required>
+            <span class="error-message" id="name-error"></span>
           </div>
           <div class="input-group">
             <label for="surname">Прізвище</label>
             <input type="text" name="surname" required>
+            <span class="error-message" id="surname-error"></span>
           </div>
           <div class="input-group">
             <label for="email">Email</label>
             <input type="email" name="email" required>
+            <span class="error-message" id="email-error"></span>
           </div>
           <div class="input-group">
             <label for="phone">Номер телефону</label>
             <input type="tel" name="phone" required>
+            <span class="error-message" id="phone-error"></span>
           </div>
           <div class="input-group">
             <label for="grade">Клас</label>
@@ -63,11 +69,15 @@
           <div class="input-group">
             <label for="password">Пароль</label>
             <div class="password-wrapper">
-              <input type="password" name="password" required>
+              <input type="password" name="password" id="register-password" required>
               <button type="button" class="toggle-password" onclick="togglePassword(this)">🔓</button>
             </div>
+            <span class="error-message" id="password-error"></span>
           </div>
-          <input type="submit" value="Зареєструватися">
+          <% if (typeof error !== 'undefined') { %>
+            <div class="server-error"><%= error %></div>
+          <% } %>
+          <input id="register-submit" type="submit" value="Зареєструватися" disabled>
           <p class="switch-link" onclick="showLogin()">Вже маєте акаунт? Увійдіть</p>
         </form>
       </div>
@@ -75,25 +85,7 @@
     </div>
   </div>
 
-  <script>
-    function togglePassword(button) {
-      const input = button.previousElementSibling;
-      if (input.type === 'password') {
-        input.type = 'text';
-        button.textContent = '🔒';
-      } else {
-        input.type = 'password';
-        button.textContent = '🔓';
-      }
-    }
+<script src="/js/login-register-validation.js"></script>
 
-    function showRegister() {
-      document.getElementById('formsContainer').style.transform = 'translateX(-50%)';
-    }
-
-    function showLogin() {
-      document.getElementById('formsContainer').style.transform = 'translateX(0%)';
-    }
-  </script>
 </body>
 </html>

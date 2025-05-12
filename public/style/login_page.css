@@ -1,23 +1,21 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Montserrat', sans-serif;
   background-image: url(/img/back-fone-blure.png);
   background-size: cover;
+  font-family: 'Montserrat', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  color: white;
 }
 
 .form-wrapper {
   width: 420px;
   height: 440px;
-  overflow: hidden;
-  position: relative;
-  background-color: #FDB446;
+  background-color: #1c1c1c; /* темне тло */
   border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  overflow: hidden;
 }
 
 .forms-container {
@@ -45,7 +43,7 @@ body {
 
 label {
   font-size: 14px;
-  color: #000;
+  color: white;
   display: block;
   margin-bottom: 5px;
 }
@@ -54,15 +52,10 @@ input[type="email"],
 input[type="password"],
 input[type="text"],
 input[type="tel"] {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border: none;
-  border-bottom: 2px solid #000;
   background-color: transparent;
-  color: #000;
-  outline: none;
-  box-shadow: none;
+  border: none;
+  border-bottom: 2px solid #FDB346;
+  color: white;
 }
 
 input[type="email"]:focus,
@@ -75,9 +68,8 @@ input[type="tel"]:focus {
 }
 
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px #FDB446 inset !important;
-  -webkit-text-fill-color: black !important;
-  box-shadow: none !important;
+  -webkit-box-shadow: 0 0 0 1000px #1c1c1c inset !important;
+  -webkit-text-fill-color: white !important;
 }
 
 #switch-link-registr {
@@ -90,11 +82,22 @@ input:-webkit-autofill {
   margin-top: 80px;
 }
 
-
+.switch-link,
+p a {
+  color: #FDB346;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#submit-login-button{
+  margin-bottom: 25%;
+  font-size: 16px;
+  width: 100px;
+  height: 33px;
+  margin-left: 35%;
+}
 .switch-link {
   text-align: center;
   margin-top: 15px;
-  color: #000;
   cursor: pointer;
   text-decoration: underline;
 }
@@ -104,12 +107,12 @@ input:-webkit-autofill {
 }
 
 .register-form::-webkit-scrollbar-thumb {
-  background-color: #000;
+  background-color: #FDB346;
   border-radius: 20px;
 }
 
 .register-form::-webkit-scrollbar-track {
-  background: transparent;
+scrollbar-color: #FDB346 transparent;
 }
 
 /* Firefox */
@@ -122,8 +125,8 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0px 1000px #FDB446 inset !important;
-  -webkit-text-fill-color: #000 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #1c1c1c inset !important;
+  -webkit-text-fill-color: white !important;
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -137,26 +140,19 @@ input:-moz-autofill {
 
 /* Стилізація для кнопки */
 input[type="submit"] {
-  width: 100%;
-  padding: 10px;
-  background-color: #000;
-  color: white;
+  background-color: #FDB346;
+  color: black;
   border: none;
   border-radius: 30px;
-  font-size: 16px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: color 0.4s ease, background-color 0.4s ease;
-  z-index: 0;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Зміна кольору тексту і фону при наведенні */
 input[type="submit"]:hover {
-  color: black; /* Зміна кольору тексту на чорний */
-  background-color: white; /* Зміна кольору фону на білий */
+  background-color: #e29d30;
+  color: white;
 }
-
 /* Псевдоелемент для анімації */
 input[type="submit"]::after {
   content: '';
@@ -225,6 +221,7 @@ input[type="submit"]:hover::after {
 .password-wrapper input {
   width: 100%;
   padding-right: 40px;
+  height: 25px;
 }
 
 .toggle-password {
@@ -234,5 +231,63 @@ input[type="submit"]:hover::after {
   border: none;
   cursor: pointer;
   font-size: 18px;
-  color: #333;
+  color: #FDB346;
 }
+
+.error-message {
+  color: red;
+  font-size: 0.85em;
+  display: block;
+  margin-top: 4px;
+}
+
+input.invalid {
+  border-bottom: 1px solid red;
+}
+
+.server-error {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}
+ .error-message {
+      color: red;
+      font-size: 0.85em;
+      display: block;
+      margin-top: 4px;
+    }
+    .server-error {
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+    }
+    input.invalid {
+      border-bottom: 1px solid red;
+    }
+
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 12px;
+  margin: 10px auto;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  width: fit-content;
+  text-align: center;
+  font-weight: 500;
+  max-width: 80%;
+}
+
+input[type="submit"]:disabled {
+  margin-left: 30%;
+  font-size: 16px;
+  height: 40px;
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+

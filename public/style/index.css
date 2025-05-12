@@ -158,7 +158,7 @@ body {
   .white-box,
   .orange-box {
     margin: 0;
-    width: 100%;
+    width: 50%;
   }
 
   .stat {
@@ -256,7 +256,7 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   padding: 30px;
-  background-color: white;
+  background-color: #1c1c1c;
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 1s ease, transform 1s ease;
@@ -309,30 +309,59 @@ body {
 }
 
 .form-title {
+  color: #ffffff;
   text-align: center;
   margin-bottom: 20px;
 }
-
+.quastionLable{
+  color: white;
+}
 .consultation-form {
-  background-color: #d8d2d2;
+  border-color: #FDB346;
+  border: 5px solid #FDB346;
+  background-color: #1c1c1c;
   border-radius: 30px;
   padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  align-items: center;
 }
 
 .consultation-form input,
 .select-wrapper select {
+  border: none;
+  border-bottom: 2px solid #FDB346;
   width: 250px;
   padding: 10px;
-  border-radius: 10px;
-  border: none;
-  background-color: white;
-  text-align: center;
+  color: white;
+  background-color: #1c1c1c;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #1c1c1c inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Firefox */
+input:-moz-autofill {
+  box-shadow: 0 0 0px 1000px #FDB446 inset !important;
+  -moz-text-fill-color: #000 !important;
+}
+
+select:focus {
+  outline: none;
+  box-shadow: none; /* Додатково прибирає тінь, якщо браузер її додає */
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none; /* Додатково прибирає тінь, якщо браузер її додає */
 }
 
 .select-wrapper {
@@ -361,15 +390,15 @@ body {
 
 .submit-button {
   padding: 10px 20px;
-  background-color: #08085b;
-  color: white;
+  background-color: #FDB346;
+  color: rgb(0, 0, 0);
   font-size: 18px;
   border: none;
   border-radius: 15px;
   cursor: pointer;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1295px) {
   .consultation-image.left{
     display: none;
   }
@@ -402,8 +431,8 @@ body {
 
 
 #generalQuestions-border {
-  border: 5px solid;
-  border-color: black;
+  border: 2px solid;
+  border-color: #FDB346;
   border-radius: 30px;
   padding: 150px 30px;
 }
@@ -411,12 +440,12 @@ body {
 #generalQuestions {
   padding: 50px;
   padding-bottom: 50px;
-  background-color: white;
+  background-color: #1c1c1c;
 }
 
 h1 {
   text-align: center;
-  color: #08085B;
+  color: white;
   margin-bottom: 40px;
 }
 
@@ -437,7 +466,7 @@ h1 {
 }
 
 .question-item {
-  background-color: #f3f3f3;
+  background-color: #FDB346;
   border-radius: 20px;
   padding: 20px;
   cursor: pointer;

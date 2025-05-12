@@ -7,6 +7,7 @@ body {
   }
   
   .page-title {
+    margin-top: 150px;
     text-align: center;
     margin-bottom: 40px;
     color: #FDB346;
@@ -139,4 +140,39 @@ body {
     cursor: pointer;
   }
   
+
+  /* Стилі для основного контенту */
+.page-content {
+  margin-left: 0px;
+  margin-right: 0px;
+  background-color: #1c1c1c;
+  color: white;
+  padding: 40px 20px;
+  margin-top: 60px;
+  border-top: 2px solid #FDB346;
+}
+
+.page-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #FDB346;
+}
+
+.page-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.page-content a {
+  color: #FDB346;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.page-content a:hover {
+  color: #e29d30;
+}
+
   

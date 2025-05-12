@@ -127,7 +127,7 @@ header.revealed-by-hover {
   header:not(.open) a[href="/login_page"] {
     pointer-events: none;
     user-select: none;
-    opacity: 0.5; /* опціонально */
+    opacity: 0; 
     height: 1px;
   }
   
@@ -189,8 +189,10 @@ header.revealed-by-hover {
 
 
 .profile-circle {
-  width: 70px;
-  height: 70px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 60px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;

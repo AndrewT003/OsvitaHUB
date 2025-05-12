@@ -12,7 +12,8 @@
     "node-cron": "^3.0.3",
     "nodemailer": "^7.0.3",
     "passport": "^0.7.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "validator": "^13.15.0"
   },
   "name": "online-school",
   "version": "1.0.0",

@@ -59,10 +59,10 @@
       <div class="consultation-form-container">
         <h2 class="form-title">Запишіться на консультацію</h2>
         <form action="/send" method="POST" class="consultation-form">
-          <label for="name">Ім'я:</label>
+          <label class="quastionLable" for="name">Ім'я:</label>
           <input type="text" id="name" name="name" required placeholder="Введіть ваше ім'я" />
   
-          <label for="subject">Предмет:</label>
+          <label class="quastionLable" for="subject">Предмет:</label>
           <div class="select-wrapper">
             <select id="subject" name="subject" required>
               <option></option>
@@ -72,7 +72,7 @@
             </select>
           </div>
   
-          <label for="grade">Клас учня:</label>
+          <label class="quastionLable" for="grade">Клас учня:</label>
           <div class="select-wrapper">
             <select id="grade" name="grade" required>
               <option></option>
@@ -82,10 +82,10 @@
             </select>
           </div>
   
-          <label for="email">Електронна пошта:</label>
+          <label class="quastionLable" for="email">Електронна пошта:</label>
           <input type="email" id="email" name="email" required placeholder="Введіть вашу електронну пошту" />
   
-          <label for="phone">Номер телефону:</label>
+          <label class="quastionLable" for="phone">Номер телефону:</label>
           <input type="tel" id="phone" name="phone" required placeholder="Введіть номер телефону" />
   
           <button type="submit" class="submit-button">Відправити</button>
