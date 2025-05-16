@@ -4,54 +4,56 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="/style/teacher_page.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
   <title>Дашборд викладача</title>
 </head>
 <body>
   <header>
     <%- include('header') %>
   </header>
+  <div id="teacher-page-content">
 
-  <div class="container">
-    <h1>Вітаємо, <%= teacher.name %> <%= teacher.surname %>!</h1>
-
-    <% if (teacher.avatar) { %>
-      <div style="text-align: left;">
-        <img src="<%= teacher.avatar %>" alt="Фото викладача" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
+    <div class="container">
+      <h1>Вітаємо, <%= teacher.name %> <%= teacher.surname %>!</h1>
+  
+      <% if (teacher.avatar) { %>
+        <div style="text-align: left;">
+          <img src="<%= teacher.avatar %>" alt="Фото викладача" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
+        </div>
+      <% } %>
+      
+  
+      <div class="info-block">
+        <p style="color: white;"><span class="label">Ім’я:</span> <%= teacher.name %></p>
+        <p style="color: white;"><span class="label">Прізвище:</span> <%= teacher.surname %></p>
+        <p style="color: white;"><span class="label">Телефон:</span> <%= teacher.phone %></p>
+        <p style="color: white;"><span class="label">Предмети:</span> <%= teacher.subjects?.join(', ') || 'Не вказано' %></p>
+        <p style="color: white;"><span class="label">Біографія:</span> <%= teacher.bio || 'Не вказано' %></p>
+        <p style="color: white;"><span class="label">Досвід (роки):</span> <%= teacher.experience ?? 'Не вказано' %></p>
       </div>
-    <% } %>
-    
-
-    <div class="info-block">
-      <p><span class="label">Ім’я:</span> <%= teacher.name %></p>
-      <p><span class="label">Прізвище:</span> <%= teacher.surname %></p>
-      <p><span class="label">Телефон:</span> <%= teacher.phone %></p>
-      <p><span class="label">Предмети:</span> <%= teacher.subjects?.join(', ') || 'Не вказано' %></p>
-      <p><span class="label">Біографія:</span> <%= teacher.bio || 'Не вказано' %></p>
-      <p><span class="label">Досвід (роки):</span> <%= teacher.experience ?? 'Не вказано' %></p>
-    </div>
-
-    <h2>Ваші уроки</h2>
-<% if (lessons.length > 0) { %>
-  <ul class="lessons">
-    <% lessons.forEach(lesson => { %>
-      <li>
-        <strong><%= lesson.subject %></strong><br>
-        Дата: <%= moment(lesson.date).tz('Europe/Kyiv').format('YYYY-MM-DD') %><br>
-        Час: <%= lesson.time %><br>
-        Учень: <%= lesson.studentId ? lesson.studentId.name + ' ' + lesson.studentId.surname + ' (Клас: ' + lesson.studentId.grade +   ')  Телефон: ' + lesson.studentId.phone : 'Не вказано' %>
-      </li>
-    <% }); %>
-  </ul>
-<% } else { %>
-  <p>У вас поки що немає уроків.</p>
-<% } %>
-
-
-
-    <div class="profile-buttons">
-      <a href="/teacher/edit" class="edit-button">Редагувати профіль</a>
-      <a href="/logout" class="logout-button">Вийти</a>
+  
+      <h2>Ваші уроки</h2>
+      <% if (lessons.length > 0) { %>
+      <ul class="lessons">
+      <% lessons.forEach(lesson => { %>
+        <li>
+          <strong><%= lesson.subject %></strong><br>
+          Дата: <%= moment(lesson.date).tz('Europe/Kyiv').format('YYYY-MM-DD') %><br>
+          Час: <%= lesson.time %><br>
+          Учень: <%= lesson.studentId ? lesson.studentId.name + ' ' + lesson.studentId.surname + ' (Клас: ' + lesson.studentId.grade +   ')  Телефон: ' + lesson.studentId.phone : 'Не вказано' %>
+        </li>
+      <% }); %>
+      </ul>
+      <% } else { %>
+      <p>У вас поки що немає уроків.</p>
+      <% } %>
+  
+      <div class="profile-buttons">
+        <a href="/teacher/edit" class="edit-button">Редагувати профіль</a>
+        <a href="/logout" class="logout-button">Вийти</a>
+      </div>
     </div>
   </div>
+
 </body>
 </html>

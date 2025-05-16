@@ -1,19 +1,23 @@
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
       font-family: 'Montserrat', sans-serif;
       font-weight: 500;
-      padding: 20px;
       background-image: url(/img/back-fone-blure.png);
       background-size: cover;
+      margin: 0;
+    }
+    #edit-student-page-content{
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     h1 {
       color: #333;
     }
     form {
-      background-color: #fff;
+      color: white;
+      background-color: #1c1c1c;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -24,8 +28,10 @@
       margin-top: 10px;
     }
     input {
+      color: white;
+      background-color: #1c1c1c;
       border: none;
-      border-bottom: 3px solid black;
+      border-bottom: 3px solid #FDB446;
       width: 100%;
       padding: 8px;
       margin-top: 5px;
@@ -43,10 +49,49 @@
     }
     h1{
         color: white;
-        margin-top: 140px;
+        margin-top: 40px;
     }
     @media (max-width: 768px) {
         .container{
         margin-top: 150px;
       }
     }
+
+
+
+    input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #1c1c1c inset !important;
+  -webkit-text-fill-color: white !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #1c1c1c inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #1c1c1c inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+  
+textarea:focus {
+  outline: none;
+  box-shadow: none; /* Додатково прибирає тінь, якщо браузер її додає */
+}
+
+  textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #1c1c1c inset !important;
+  -webkit-text-fill-color: white !important;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none; /* Додатково прибирає тінь, якщо браузер її додає */
+}

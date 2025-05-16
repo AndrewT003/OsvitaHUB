@@ -1,17 +1,11 @@
 header {
   font-family: 'Montserrat', sans-serif;
-  background-color: white;
+  background-color: #1c1c1c;
   padding: 15px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
   flex-wrap: wrap;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 1100;
   transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
   pointer-events: auto;
@@ -59,7 +53,7 @@ header.revealed-by-hover {
 #NaviLinks a,
 #contactLink {
   text-decoration: none;
-  color: black;
+  color: rgb(255, 255, 255);
   font-weight: 500;
   font-size: 16px;
   transition: color 0.2s ease;
@@ -67,7 +61,7 @@ header.revealed-by-hover {
 
 #NaviLinks a:hover,
 #contactLink:hover {
-  color: #cc0000;
+  color: #FDB446;
 }
 
 #contactLink {
@@ -92,7 +86,7 @@ header.revealed-by-hover {
   margin-bottom: 10px;
   width: 30px;
   height: 3px;
-  background-color: black;
+  background-color: #FDB446;
   display: block;
   position: relative;
 }
@@ -103,7 +97,7 @@ header.revealed-by-hover {
   position: absolute;
   width: 30px;
   height: 3px;
-  background-color: black;
+  background-color: #FDB446;
   display: block;
 }
 
@@ -198,6 +192,19 @@ header.revealed-by-hover {
   align-items: center;
   border-radius: 50%;
   font-weight: bold;
+}
+
+
+
+#scrollProgressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px; /* товщина полоски */
+  width: 0%;
+  background-color: white;
+  z-index: 9999;
+  transition: width 0.2s ease;
 }
 
 

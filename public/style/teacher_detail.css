@@ -4,20 +4,24 @@ body {
     background-image: url(/img/back-fone-blure.png);
     background-size: cover;    color: #333;
     margin: 0;
-    padding: 30px;
-    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
-
+#teacher-detail-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .teacher-detail-container {
+    color: white;
     margin-top: 100px;
     display: flex;
     flex-direction: column;
     width: 80%;
     max-width: 800px;
-    background-color: white;
+    background-color: #1c1c1c;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -42,7 +46,7 @@ body {
 /* Заголовок викладача */
 .teacher-detail-card h2 {
     font-size: 24px;
-    color: #444;
+    color: white;
     margin-bottom: 10px;
 }
 

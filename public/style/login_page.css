@@ -2,13 +2,25 @@ body {
   background-image: url(/img/back-fone-blure.png);
   background-size: cover;
   font-family: 'Montserrat', sans-serif;
+  height: 100vh;
+  color: white;
+  margin: 0;
+}
+#login-content{
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+#div-register-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#div-login-button{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  color: white;
 }
-
 .form-wrapper {
   width: 420px;
   height: 440px;
@@ -83,17 +95,16 @@ input:-webkit-autofill {
 }
 
 .switch-link,
-p a {
+p  {
   color: #FDB346;
   text-decoration: underline;
   cursor: pointer;
 }
 #submit-login-button{
-  margin-bottom: 25%;
+  margin-bottom: 15%;
   font-size: 16px;
   width: 100px;
-  height: 33px;
-  margin-left: 35%;
+  height: 40px;
 }
 .switch-link {
   text-align: center;
@@ -281,13 +292,15 @@ input.invalid {
 }
 
 input[type="submit"]:disabled {
-  margin-left: 30%;
   font-size: 16px;
   height: 40px;
   background-color: #ccc;
   color: #666;
   cursor: not-allowed;
   opacity: 0.7;
+}
+.hidden {
+  display: none;
 }
 
 

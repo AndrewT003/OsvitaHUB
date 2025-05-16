@@ -52,12 +52,9 @@
     </div>
   
     <section class="consultation-section" id="consultationSection">
-      <div class="consultation-image left">
-        <img id="consultation-image-left" src="/img/image1ForForm.png" alt="Форма ліворуч">
-      </div>
   
       <div class="consultation-form-container">
-        <h2 class="form-title">Запишіться на консультацію</h2>
+        <h2 class="form-title">Швидко знайдемо репетитора з математики, української мови або історії</h2>
         <form action="/send" method="POST" class="consultation-form">
           <label class="quastionLable" for="name">Ім'я:</label>
           <input type="text" id="name" name="name" required placeholder="Введіть ваше ім'я" />
@@ -92,16 +89,14 @@
         </form>
       </div>
   
-      <div class="consultation-image right">
-        <img src="/img/image2ForForm.png" alt="Форма праворуч" />
-      </div>
     </section>
 
     <div id="generalQuestions">
       <div id="generalQuestions-border">
-        <h1>ПОШИРЕНІ ЗАПИТАННЯ</h1>
+        
         <section class="question-layout">
           <div class="question-column">
+            <h1 style="padding-top: 100px;">ПОШИРЕНІ ЗАПИТАННЯ</h1>
             <% const questions = [
               { q: "Скільки коштує навчання в OsvitaHUB?", a: "Навчання в OsvitaHUB залежить від кількості занять та обраного предмета." },
               { q: "Як можна оплатити навчання?", a: "Ми приймаємо оплату через банківські перекази, картки або сервіси онлайн-оплати." },
@@ -121,9 +116,11 @@
               </div>
             <% }) %>
           </div>
+
           <div class="question-image">
-            <img id="second_Img_GeneralQuestion" src="/img/GeneralQuastionImg.png" alt="FAQ" />
+            <img id="question-image-image1"  src="/img/GeneralQuastionImg.png" alt="">
           </div>
+
         </section>
       </div>
     </div>
@@ -141,7 +138,7 @@
             </div>
             <h3><%= plan.title %></h3>
             <h3><%= plan.price %> грн</h3>
-            <button class="purchuase_button">Детальніше</button>
+            <button onclick="window.location.href='/lessons#lesson-<%= plan._id %>'" class="purchuase_button">Детальніше</button>
           </div>
         <% }) %>
       </div>

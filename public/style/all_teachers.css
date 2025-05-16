@@ -1,14 +1,15 @@
 body {
-  background-image: url(/img/back-fone-blure.png);
-  background-size: cover;  margin-top: 100px;
+  background-image: url(/img/About_usTeacher_fone_blure.png);
+  background-size: cover;  
   font-family: 'Montserrat', sans-serif;
   font-weight: 100;
+  margin: 0;
 
 }
 
 #name_of_page_all_teachers{
   color: white;
-  margin-top: 150px;
+  margin-top: 50px;
   text-align: center;
 }
 
@@ -36,7 +37,7 @@ body {
 }
 
 .teacher-card {
-  background-color: rgba(255, 255, 255, 0.244);
+  background-color: #1c1c1c84;
   padding: 20px;
   width: 100%; /* оновлено: ширина задається грідом */
   box-sizing: border-box;
@@ -78,10 +79,10 @@ body {
 
 /* Стилі для кнопки "Переглянути всіх викладачів" */
 .view-all-link {
-  color: #FDB446;
+  color: #ffffff;
   font-size: 18px;
   font-weight: bold;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .view-all-link:hover {

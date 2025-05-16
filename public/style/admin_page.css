@@ -12,18 +12,21 @@ body {
     margin-top: 20px;
   }
   textarea{
+    color: white;
+    border: none;
+    border-bottom: 2px solid #FDB446;
+    background-color: #1c1c1c;
     width: 100%;
     height: 40px;
   }
 
   form {
-    background-color: #fff;
-    color: #000;
+    background-color: #1c1c1c;
+    color: #ffffff;
     max-width: 600px;
     margin: 30px auto;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(253, 180, 70, 0.4);
   }
 
   label {
@@ -33,11 +36,13 @@ body {
   }
 
   input, select {
+    color: white;
+    background-color: #1c1c1c;
     width: 100%;
     padding: 8px;
     margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: none;
+    border-bottom: 2px solid #FDB446;
   }
 
   button[type="submit"], .logout-button {
@@ -121,4 +126,41 @@ body {
       font-size: 14px;
     }
   }
+
+
+  input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #1c1c1c inset !important;
+  -webkit-text-fill-color: white !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #1c1c1c inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #1c1c1c inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
   
+textarea:focus {
+  outline: none;
+  box-shadow: none; /* Додатково прибирає тінь, якщо браузер її додає */
+}
+
+  textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #1c1c1c inset !important;
+  -webkit-text-fill-color: white !important;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none; /* Додатково прибирає тінь, якщо браузер її додає */
+}

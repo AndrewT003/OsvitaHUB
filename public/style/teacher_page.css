@@ -1,27 +1,30 @@
 body {
-    display: flex;
-    justify-content: center;
-    padding-top: 200px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     background-image: url(/img/back-fone-blure.png);
     background-size: cover;    margin: 0;
-    padding: 30px;
     color: black;
+    margin: 0;
   }
 
   .container {
     width: 70%;
     margin-top: 100px;
     max-width: 700px;
-    background-color: white;
+    background-color: #1c1c1c;
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
+  #teacher-page-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   h1, h2 {
-    color: #444;
+    color: white;
   }
 
   .info-block {
@@ -64,7 +67,7 @@ body {
   }
 
   ul.lessons li {
-    background: #f1f1f1;
+    background: #FDB446;
     margin-bottom: 10px;
     padding: 12px;
     border-radius: 8px;
