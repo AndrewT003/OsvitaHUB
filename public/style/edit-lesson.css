@@ -1,0 +1,59 @@
+body{
+    background-image: url(/img/back-fone-blure.png);
+    background-size: cover;    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    margin: 0;
+}
+#edit-lesson-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+form{
+    width: 40%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+input{
+    padding: 3px;
+    background-color: #222;
+    border: none;
+    border-bottom: 1px solid #FDB446;
+    color: white;
+}
+select{
+    padding: 3px;
+    background-color: #222;
+    border: none;
+    border-bottom: 1px solid #FDB446;
+    color: white;
+}
+button{
+    background-color: #FDB446;
+}
+.input-values-labels{
+    display: flex;
+    flex-direction: column;
+}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #1c1c1c inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+input:focus {
+  outline: none;
+  box-shadow: none; /* Додатково прибирає тінь, якщо браузер її додає */
+}
+select:focus {
+  outline: none;
+  box-shadow: none; /* Додатково прибирає тінь, якщо браузер її додає */
+}

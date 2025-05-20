@@ -10,10 +10,12 @@ const userSchema = new mongoose.Schema({
     enum: ['student', 'teacher', 'admin'],
     default: 'student'
   },
+  resetCode: { type: String },
+  resetCodeExpires: { type: Date },
 
-  // 🔄 Нові поля для скидання пароля через 6-значний код
-  resetCode: { type: String },             // код (наприклад, "123456")
-  resetCodeExpires: { type: Date }         // термін дії коду
+  // 🆕 Для підтвердження пошти
+  verifyToken: { type: String },
+  isVerified: { type: Boolean, default: false }
 
 }, { timestamps: true });
 

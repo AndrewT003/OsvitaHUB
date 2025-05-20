@@ -10,77 +10,70 @@
   <header>
     <%- include('header') %>
   </header>
-
-  <h1 id="Page_Title_createLessons">Створити новий урок</h1>
-
-  <form action="/create-lesson" method="POST">
-    <label>Вчитель:</label>
-    <select name="teacherId" required>
-      <option value="">Оберіть вчителя</option>
-      <% teachers.forEach(teacher => { %>
-        <option value="<%= teacher._id %>"><%= teacher.name %> <%= teacher.surname %></option>
-      <% }) %>
-    </select>
-
-    <label>Студент:</label>
-    <select name="studentId" required>
-      <option value="">Оберіть студента</option>
-      <% students.forEach(student => { %>
-        <option value="<%= student._id %>">
-          <%= student.name %> <%= student.surname %> (Клас: <%= student.grade %>)
-        </option>
-      <% }) %>
-    </select>
-
-    <label>Предмет:</label>
-    <input type="text" name="subject" required>
-
-    <label>Дата:</label>
-    <input type="date" name="date" required>
-
-    <label>Час:</label>
-    <input type="time" name="time" required>
-
-    <button type="submit">Створити урок</button>
-  </form>
-
-  <h2 style="color: white;">Список усіх уроків</h2>
-  <table class="lesson-table">
-    <thead>
-      <tr>
-        <th>Дата</th>
-        <th>Час</th>
-        <th>Предмет</th>
-        <th>Вчитель</th>
-        <th>Студент</th>
-        <th>Статус</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% if (lessons.length > 0) { %>
-        <% lessons.forEach(lesson => { %>
-          <tr>
-            <td data-label="Дата"><%= new Date(lesson.date).toLocaleDateString('uk-UA') %></td>
-            <td data-label="Час"><%= lesson.time %></td>
-            <td data-label="Предмет"><%= lesson.subject %></td>
-            <td data-label="Вчитель">
-              <%= lesson.teacherId ? lesson.teacherId.name + ' ' + lesson.teacherId.surname : 'Не вказано' %>
-            </td>
-            <td data-label="Студент">
-              <%= lesson.studentId 
-                  ? lesson.studentId.name + ' ' + lesson.studentId.surname + ' (Клас: ' + lesson.studentId.grade + ') Телефон: ' + lesson.studentId.phone 
-                  : 'Не вказано' %>
-            </td>
-            <td data-label="Статус"><%= lesson.status || 'Не вказано' %></td>
-          </tr>
+  <div id="create-lessons-content">
+    <h1 id="Page_Title_createLessons">Створити новий урок</h1>
+  
+    <form class="creating-lesson-form" action="/create-lesson" method="POST">
+      <label>Вчитель:</label>
+      <select name="teacherId" required>
+        <option value="">Оберіть вчителя</option>
+        <% teachers.forEach(teacher => { %>
+          <option value="<%= teacher._id %>"><%= teacher.name %> <%= teacher.surname %></option>
         <% }) %>
-      <% } else { %>
-        <tr>
-          <td colspan="6">У вас поки що немає уроків.</td>
-        </tr>
-      <% } %>
-    </tbody>
-  </table>
+      </select>
+  
+      <label>Студент:</label>
+      <select name="studentId" required>
+        <option value="">Оберіть студента</option>
+        <% students.forEach(student => { %>
+          <option value="<%= student._id %>">
+            <%= student.name %> <%= student.surname %> (Клас: <%= student.grade %>)
+          </option>
+        <% }) %>
+      </select>
+  
+      <label>Предмет:</label>
+      <input type="text" name="subject" required>
+  
+      <label>Дата:</label>
+      <input type="date" name="date" required>
+  
+      <label>Час:</label>
+      <input type="time" name="time" required>
+  
+      <button type="submit">Створити урок</button>
+    </form>
+  
+    <h2 style="color: white;">Список усіх уроків</h2>
+  
+  <div class="lessons-list">
+    <% if (lessons.length > 0) { %>
+      <% lessons.forEach(lesson => { %>
+        <div class="lesson-card" style="background: #222; color: white; padding: 15px; margin-bottom: 15px; border-radius: 8px;">
+          <p><strong>Дата:</strong> <%= new Date(lesson.date).toLocaleDateString('uk-UA') %></p>
+          <p><strong>Час:</strong> <%= lesson.time %></p>
+          <p><strong>Предмет:</strong> <%= lesson.subject %></p>
+          <p><strong>Вчитель:</strong> <%= lesson.teacherId ? lesson.teacherId.name + ' ' + lesson.teacherId.surname : 'Не вказано' %></p>
+          <p><strong>Студент:</strong> 
+            <%= lesson.studentId 
+                ? lesson.studentId.name + ' ' + lesson.studentId.surname + ' (Клас: ' + lesson.studentId.grade + ') Телефон: ' + lesson.studentId.phone 
+                : 'Не вказано' %>
+          </p>
+          <div style="margin-top: 10px;">
+            <a href="/edit-lesson/<%= lesson._id %>" class="btn btn-edit" style="margin-right: 10px; color: #0af; text-decoration: underline; cursor: pointer;">Редагувати</a>
+            <form class="delete-button-from-db" action="/delete-lesson/<%= lesson._id %>" method="POST" style="display: inline;">
+              <button type="submit" class="btn btn-delete" style="background: #a00; color: white; border: none; padding: 5px 10px; cursor: pointer;">Видалити</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p style="color: white;">У вас поки що немає уроків.</p>
+    <% } %>
+  </div>
+  </div>
+
+
 
   <a href="/admin_page">Назад</a>
 </body>

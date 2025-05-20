@@ -16,7 +16,8 @@ let touchedFields = {
   surname: false,
   email: false,
   phone: false,
-  password: false
+  password: false,
+  grade: false // Додано для поля "Клас"
 };
 
 // Функція для налаштування валідації звичайних полів
@@ -66,12 +67,14 @@ const surname = registerForm.surname;
 const email = registerForm.email;
 const phone = registerForm.phone;
 const password = registerForm.password;
+const grade = registerForm.grade;
 
 // Регулярки
 const nameValid = /^[^\s][а-яА-Яa-zA-ZёЁіїІЇЄєґҐ'-]{1,}$/;
 const phoneValid = /^\+380\d{9}$/;
 const passwordValid = /^(?=.*[a-zA-Zа-яА-ЯіІїЇєЄґҐ])(?=.*[A-ZА-ЯІЇЄҐ])(?=.*\d).{8,}$/;
 const emailValid = /^[а-яА-ЯёЁіІїЇєЄґҐa-zA-Z0-9._-]+@[а-яА-ЯёЁіІїЇєЄґҐa-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const gradeValid = /^(?:[1-9]|10|11)$/; // Додано — клас 1-11
 
 // Стан email
 let emailTimeout;
@@ -136,6 +139,7 @@ setupFieldValidation(name, nameValid, 'name-error', 'Некоректне ім�
 setupFieldValidation(surname, nameValid, 'surname-error', 'Некоректне прізвище');
 setupFieldValidation(phone, phoneValid, 'phone-error', 'Номер має бути у форматі +380XXXXXXXXX');
 setupFieldValidation(password, passwordValid, 'password-error', 'Пароль має бути не менше 8 символів і містити великі, малі літери та цифру');
+setupFieldValidation(grade, gradeValid, 'grade-error', 'Клас має бути числом від 1 до 11'); // Додано
 
 // Увімкнути/вимкнути кнопку
 function updateRegisterButtonState() {
@@ -145,6 +149,7 @@ function updateRegisterButtonState() {
     emailValid.test(email.value) &&
     phoneValid.test(phone.value) &&
     passwordValid.test(password.value) &&
+    gradeValid.test(grade.value) &&
     !emailTaken;
 
   registerBtn.disabled = !allValid;
@@ -177,3 +182,37 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const error = params.get('error');
+
+  const emailField = document.querySelector('input[name="email"]');
+  const passwordField = document.querySelector('input[name="password"]');
+  const emailError = document.getElementById('login-email-error');
+  const passwordError = document.getElementById('login-password-error');
+
+  if (error === 'wrong-password') {
+    passwordField.classList.add('invalid');
+    passwordError.textContent = 'Неправильний пароль';
+  }
+
+  if (error === 'email-not-found') {
+    emailField.classList.add('invalid');
+    emailError.textContent = 'Користувача з такою поштою не знайдено';
+  }
+
+  if (error === 'email-not-verified') {
+    emailField.classList.add('invalid');
+    emailError.textContent = 'Акаунт ще не підтверджено. Перевірте пошту.';
+  }
+
+  if (error === 'wrong-password' || error === 'email-not-found' || error === 'email-not-verified') {
+    const forgotLink = document.getElementById('forgot-password-link');
+    if (forgotLink) {
+      forgotLink.classList.remove('hidden');
+    }
+  }
+});
+

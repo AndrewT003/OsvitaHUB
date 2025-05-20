@@ -91,3 +91,87 @@ body {
   }
 }
 
+
+
+
+/* Стиль для alert */
+.alert {
+  color: black;
+    gap: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px;
+    margin: 0;
+    border-radius: 30px;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    display: none; /* Сховати alert за замовчуванням */
+    position: fixed; /* Фіксоване позиціонування */
+    top: 50%; /* Розташування по вертикалі */
+    left: 50%; /* Розташування по горизонталі */
+    transform: translate(-50%, -50%); /* Для точного центрування */
+    max-width: 250px;
+    width: 50%; /* Для мобільних пристроїв */
+    z-index: 9999; /* Розташовує alert поверх всіх інших елементів */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тінь для кращого вигляду */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out; /* Плавне з'явлення */
+  }
+  .alert-text{
+    text-align: center;
+  }
+  
+  .alert .alert-icon {
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+  }
+  
+  .alert .alert-text {
+    text-align: center;
+    flex-grow: 1;
+  }
+  
+  .alert .close-btn {
+    background: none;
+    border: none;
+    color: rgb(0, 0, 0);
+    font-size: 60px;
+    cursor: pointer;
+  }
+  
+  .alert.success {
+    background-color: #ffffff; /* Зелений для успіху */
+  }
+  
+  .alert.error {
+    background-color: #f44336; /* Червоний для помилки */
+  }
+  
+  .alert.info {
+    background-color: #2196F3; /* Синій для інформації */
+  }
+  
+  /* Анімація */
+  .alert.show {
+    display: flex;
+    opacity: 1; /* Повна видимість */
+  }
+  
+  .alert.show .alert-icon {
+    background-image: url('/img/rocker_icon_success_form_index.png'); /* Іконка для успіху */
+  }
+  
+  .alert.error .alert-icon {
+    background-image: url('/img/icon_error_form_index.png'); /* Іконка для помилки */
+  }
+
+  /* Коли alert показаний, блюрити вміст */
+.blur {
+    filter: blur(5px);
+    pointer-events: none; /* Забороняє клікати по заблюреному контенту */
+    user-select: none;
+  }
+  

@@ -1,0 +1,292 @@
+    body{
+        margin: 0;
+        background-color: black;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+
+    }
+
+    #first_div_feedbacks{
+        color: white;
+        text-align: center;
+        border: none;
+        border-bottom: 5px solid #FDB446;
+        padding-top: 100px;
+        gap: 50px;
+        padding-left: 10%;
+        padding-right: 10%;
+        padding-bottom: 50px;
+    }
+    .feedback-video-container{
+        padding: 5%;
+        text-align: center;
+        background-image: url(/img/feedback-video-div.png);
+        background-size: cover;
+    }
+    .feedback-text-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5%;
+        background-image: url(/img/feedback-text-div.png);
+    }
+    #text-up-text-feedback{
+        padding-bottom: 40px;
+        border: none;
+        border-bottom: 3px solid #FDB446;
+    }
+
+
+
+
+.feedback-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+}
+
+.feedback-item {
+  background-color: #1c1c1172; /* напівпрозорий #FDB446 */
+  color: #ffffff; /* чорний текст */
+  padding: 20px;
+  border-bottom: 4px solid #FDB446; /* підкреслення знизу */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.feedback-item:hover {
+  transform: scale(1.02);
+}
+
+.feedback-item p {
+  margin: 10px 0;
+}
+
+.feedback-item small {
+  font-size: 0.9em;
+  color: #ffffff;
+}
+.star-rating {
+  font-size: 28px;
+  color: #FDB446;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.star {
+  transition: color 0.2s ease;
+}
+
+.star:hover {
+  text-shadow: 0 0 5px #FDB446;
+}
+
+
+.feedback-form {
+  background-color: rgba(0, 0, 0, 0.623); /* напівпрозорий блок */
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 600px;
+  width: 100%;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: white;
+}
+
+.feedback-form input[type="email"],
+.feedback-form textarea {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #FDB446;
+  padding: 12px;
+  color: white;
+  font-size: 16px;
+  resize: vertical;
+}
+
+.feedback-form input[type="email"]::placeholder,
+.feedback-form textarea::placeholder {
+  color: #fdb446a4;
+}
+
+.feedback-form textarea {
+  min-height: 120px;
+  font-family: 'Montserrat', sans-serif;
+}
+#load-more{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #fdb446;
+    border-radius: 20px;
+    border: none;
+    padding: 20px;
+    background-color: #1c1c11;
+    margin: 20px auto;
+    display: block;
+}
+
+
+.feedback-form button {
+  background-color: #FDB446;
+  color: black;
+  font-weight: bold;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-form button:hover {
+  background-color: #fbc266;
+}
+
+/* Зірки */
+.star-rating {
+  font-size: 28px;
+  color: #FDB446;
+  cursor: pointer;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.star {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.star:hover,
+.star.hovered {
+  text-shadow: 0 0 5px #FDB446;
+  transform: scale(1.2);
+}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #2e2f3100 !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #2e2f3100 inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+  
+textarea:focus {
+  outline: none;
+  box-shadow: none; /* Додатково прибирає тінь, якщо браузер її додає */
+}
+
+  textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #2e2f3100 inset !important;
+  -webkit-text-fill-color: white !important;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none; /* Додатково прибирає тінь, якщо браузер її додає */
+}
+
+.average-rating{
+  background-color: #1c1c1199;
+  border-radius: 20px;
+    padding: 50px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .chart-container {
+      position: relative;
+      width: 400px;
+      height: 300px;
+      border-bottom: 2px solid transparent;
+      overflow: hidden;
+    }
+    #second-bar{
+        background: red;
+    }
+    #last-bar{
+        background: red;
+    }
+
+    .x-axis {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 5px;
+      background: #ffffff;
+      animation: drawAxis 1s forwards;
+    }
+
+    @keyframes drawAxis {
+      to { width: 100%; }
+    }
+
+    .bar {
+      position: absolute;
+      bottom: 0;
+      width: 40px;
+      background: #ffffff;
+      height: 0;
+      opacity: 0;
+    }
+
+    @keyframes growBar {
+      0% {
+        height: 0;
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }

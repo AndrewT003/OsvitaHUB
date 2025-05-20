@@ -9,94 +9,149 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div id="alertMessage" class="alert">
+  <div class="alert-icon"></div>
+  <div class="alert-text"></div>
+  <button class="close-btn">&times;</button>
+</div>
   <header>
     <%- include('header') %>
   </header>
-  <div id="login-content">
 
-    <div class="form-wrapper">
-      <div class="forms-container" id="formsContainer">
-        <!-- Форма логіну -->
-        <div class="form login-form">
-          <h2 style="color: #FDB346;">Увійти</h2>
-          <form action="/login" method="POST" id="loginForm">
-            <div class="input-group">
-              <label for="email">Email</label>
-              <input type="email" name="email" required>
-              <span class="error-message" id="login-email-error"></span>
-            </div>
-            <div class="input-group">
-              <label for="password">Пароль</label>
-              <div class="password-wrapper">
-                <input type="password" name="password" id="login-password" required>
-                <button type="button" class="toggle-password" onclick="togglePassword(this)">🔓</button>
+  <div id="pageContent">
+
+    <div id="login-content">
+  
+      <div class="form-wrapper">
+        <div class="forms-container" id="formsContainer">
+          <!-- Форма логіну -->
+          <div class="form login-form">
+            <h2 style="color: #FDB346;">Увійти</h2>
+            <form action="/login" method="POST" id="loginForm">
+              <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" required>
+                <span class="error-message" id="login-email-error"></span>
               </div>
-              <span class="error-message" id="login-password-error"></span>
-            </div>
-            <div id="div-login-button">
-              <input id="submit-login-button" type="submit" value="Увійти">
-            </div>
-            <p id="switch-link-registr" class="switch-link" onclick="showRegister()">Немає акаунту? Зареєструйтесь</p>
-            <div id="forgot-password-link" class="hidden">
-              <p style="text-align: center; color: white;"><a style="color: white;" href="/forgot-password">Забули пароль?</a></p>
-            </div>
-  
-          </form>
-        </div>
-  
-  
-        <!-- Форма реєстрації -->
-        <div class="form register-form">
-          <h2 style="color: #FDB346;">Реєстрація</h2>
-          <form action="/register" method="POST" id="registerForm">
-            <div class="input-group">
-              <label for="name">Ім’я</label>
-              <input type="text" name="name" required>
-              <span class="error-message" id="name-error"></span>
-            </div>
-            <div class="input-group">
-              <label for="surname">Прізвище</label>
-              <input type="text" name="surname" required>
-              <span class="error-message" id="surname-error"></span>
-            </div>
-            <div class="input-group">
-              <label for="email">Email</label>
-              <input type="email" name="email" required>
-              <span class="error-message" id="email-error"></span>
-            </div>
-            <div class="input-group">
-              <label for="phone">Номер телефону</label>
-              <input type="tel" name="phone" required>
-              <span class="error-message" id="phone-error"></span>
-            </div>
-            <div class="input-group">
-              <label for="grade">Клас</label>
-              <input type="text" name="grade" required>
-            </div>
-            <div class="input-group">
-              <label for="password">Пароль</label>
-              <div class="password-wrapper">
-                <input type="password" name="password" id="register-password" required>
-                <button type="button" class="toggle-password" onclick="togglePassword(this)">🔓</button>
+              <div class="input-group">
+                <label for="password">Пароль</label>
+                <div class="password-wrapper">
+                  <input type="password" name="password" id="login-password" required>
+                  <button type="button" class="toggle-password" onclick="togglePassword(this)">🔓</button>
+                </div>
+                <span class="error-message" id="login-password-error"></span>
               </div>
-              <span class="error-message" id="password-error"></span>
-            </div>
-            <% if (typeof error !== 'undefined') { %>
-              <div class="server-error"><%= error %></div>
-            <% } %>
-            <div id="div-register-button">
-              <input id="register-submit" type="submit" value="Зареєструватися" disabled>
-            </div>
-            <p class="switch-link" onclick="showLogin()">Вже маєте акаунт? Увійдіть</p>
-          </form>
+              <div id="div-login-button">
+                <input id="submit-login-button" type="submit" value="Увійти">
+              </div>
+              <p id="switch-link-registr" class="switch-link" onclick="showRegister()">Немає акаунту? Зареєструйтесь</p>
+              <div id="forgot-password-link" class="hidden">
+                <p style="text-align: center; color: white;"><a style="color: white;" href="/forgot-password">Забули пароль?</a></p>
+              </div>
+    
+            </form>
+          </div>
+    
+    
+          <!-- Форма реєстрації -->
+  <div class="form register-form">
+    <h2 style="color: #FDB346;">Реєстрація</h2>
+    <form action="/register" method="POST" id="registerForm">
+      <div class="input-group">
+        <label for="name">Ім’я</label>
+        <input type="text" name="name" required>
+        <span class="error-message" id="name-error"></span>
+      </div>
+      <div class="input-group">
+        <label for="surname">Прізвище</label>
+        <input type="text" name="surname" required>
+        <span class="error-message" id="surname-error"></span>
+      </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" required>
+        <span class="error-message" id="email-error"></span>
+      </div>
+      <div class="input-group">
+        <label for="phone">Номер телефону</label>
+        <input type="tel" name="phone" required>
+        <span class="error-message" id="phone-error"></span>
+      </div>
+      <div class="input-group">
+        <label for="grade">Клас</label>
+        <input type="text" name="grade" required>
+        <span class="error-message" id="grade-error"></span>
+      </div>
+      <div class="input-group">
+        <label for="password">Пароль</label>
+        <div class="password-wrapper">
+          <input type="password" name="password" id="register-password" required>
+          <button type="button" class="toggle-password" onclick="togglePassword(this)">🔓</button>
         </div>
+        <span class="error-message" id="password-error"></span>
+      </div>
+      <% if (typeof error !== 'undefined') { %>
+        <div class="server-error"><%= error %></div>
+      <% } %>
+      <div id="div-register-button">
+        <input id="register-submit" type="submit" value="Зареєструватися" disabled>
+      </div>
+      <p class="switch-link" onclick="showLogin()">Вже маєте акаунт? Увійдіть</p>
+    </form>
+  </div>
   
+          </div>
+    
+        </div>
       </div>
     </div>
   </div>
 
 
 <script src="/js/login-register-validation.js"></script>
+<script>
+  const alertMessage = document.getElementById('alertMessage');
+  const alertText = alertMessage.querySelector('.alert-text');
+  const closeButton = alertMessage.querySelector('.close-btn');
+  const pageContent = document.getElementById('pageContent');
+
+  function showAlert(message, type = 'success') {
+    alertText.textContent = message;
+    alertMessage.classList.add('show');
+    pageContent.classList.add('blur');
+    alertMessage.classList.remove('error', 'success');
+    alertMessage.classList.add(type);
+
+    const hide = () => {
+      alertMessage.classList.remove('show');
+      pageContent.classList.remove('blur');
+    };
+
+    closeButton.onclick = hide;
+    setTimeout(hide, 10000);
+  }
+
+  document.getElementById('registerForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = Object.fromEntries(new FormData(form).entries());
+
+    const response = await fetch('/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      showAlert(result.message, 'success');
+      form.reset();
+    } else {
+      showAlert(result.message || 'Сталася помилка', 'error');
+    }
+  });
+</script>
+
 
 </body>
 </html>

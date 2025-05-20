@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/feedbacks.css">
+    <title>Document</title>
+</head>
+<body>
+     <header>
+        <%- include('header') %>
+    </header>
+
+
+<div id="first_div_feedbacks">
+    <h1>ВІДГУКИ</h1>
+    <h2>Найкраща оцінка нашої роботи — це слова вдячності від тих, хто 
+        вже пройшов з нами шлях до впевненої української. Ми пишаємось кожним учнем 
+        і завжди раді бачити ваші результати та враження.</h2>
+</div>
+<div class="feedback-video-container">
+    <h1 style="color: white;">ВІДГУКИ НАШИХ УЧНІВ</h1>
+</div>
+<div style="background-color: #1c1c1c; color: white; padding: 5%; font-size: 20px; ">
+    <p id="text-up-text-feedback">Ми безмежно вдячні кожному з вас за теплі слова, довіру та зворотний зв’язок. Ваші історії надихають нашу команду ставати ще кращими, розвивати навчальні програми та підтримувати вас на кожному етапі мовного шляху.
+    Ваша підтримка — це наш головний стимул працювати з любов’ю та відданістю. Дякуємо, що обираєте нас! </p>
+</div>    
+<div class="feedback-text-container">
+
+   <div class="average-rating">
+        <% if (avgRating) { %>
+        <p style="font-size: 25px; color: #fdb446; margin-bottom: 0;">Середня оцінка: <%= avgRating %></p>
+        <p style="font-size: 25px; color: #fdb446;">Дякуємо вам за довіру</p>
+        <% } else { %>
+        <p>Середня оцінка: ще немає оцінок</p>
+        <% } %>
+
+        <div class="chart-container">
+            <div class="x-axis" id="xAxis"></div>
+            <!-- Стовпчики -->
+            <div class="bar" style="left: 30px;" data-height="120"></div>
+            <div id="second-bar" class="bar" style="left: 100px;" data-height="180"></div>
+            <div class="bar" style="left: 170px;" data-height="90"></div>
+            <div class="bar" style="left: 240px;" data-height="150"></div>
+            <div id="last-bar" class="bar hight-bar" style="left: 310px;" data-height="200"></div>
+        </div>
+
+    </div>
+
+
+    <div id="feedback-list" class="feedback-list">
+        <% feedbacks.forEach(feedback => { %>
+            <div class="feedback-item">
+                <p><strong><%= feedback.email %></strong></p>
+                <p><%= feedback.text %></p>
+                <p>
+                <% for (let i = 1; i <= 5; i++) { %>
+                <% if (i <= feedback.rating) { %>
+                <span style="color: #FFD700;">★</span>
+                <% } else { %>
+                <span style="color: #ccc;">★</span>
+                <% } %>
+                <% } %>
+                </p>
+                <small><%= feedback.createdAt.toLocaleDateString() %></small>
+            </div>
+        <% }) %>
+    </div>
+
+    <button id="load-more"  style="margin: 20px auto; display: block;">Завантажити ще</button>
+
+
+   <form action="/feedbacks" method="POST" class="feedback-form" id="feedback-form">
+  <p>Напишіть ваш відгук</p>
+
+  <input type="email" name="email" placeholder="Ваш email" required>
+  <textarea name="text" placeholder="Ваш відгук" required></textarea>
+
+  <div class="star-rating" id="star-container">
+    <% for (let i = 1; i <= 5; i++) { %>
+      <span class="star" data-value="<%= i %>">☆</span>
+    <% } %>
+    <input type="hidden" name="rating" id="rating-value" value="0">
+  </div>
+
+  <!-- Повідомлення про помилку -->
+  <div id="rating-error" style="color: red; display: none;">Будь ласка, оберіть оцінку (зірки)</div>
+
+  <button type="submit">Надіслати</button>
+</form>
+
+
+</div>
+<footer>
+      <%- include('footer') %>
+  </footer>
+<script src="/js/feddbacks_animation.js"></script>
+
+</body>
+</html>

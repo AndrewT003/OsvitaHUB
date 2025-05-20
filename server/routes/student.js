@@ -6,7 +6,6 @@ import mongoose from 'mongoose';
 
 const router = express.Router();
 
-// Дашборд студента
 router.get('/dashboard', async (req, res) => {
   if (!req.session.userId) {
     return res.redirect('/login_page');
@@ -20,16 +19,18 @@ router.get('/dashboard', async (req, res) => {
     const student = await Student.findOne({ userId: req.session.userId });
     if (!student) return res.status(404).send('Студента не знайдено');
 
-    // Підтягуємо всі уроки, включаючи дані про вчителя
     const lessons = await Lesson.find({ studentId: student._id }).populate('teacherId');
 
-    // Більше не потрібно окремо шукати teacher — він уже в lesson.teacherId
-    res.render('student_page', { student, lessons });
+    const message = req.session.verificationSuccess;
+    req.session.verificationSuccess = null;
+
+    res.render('student_page', { student, lessons, message });
   } catch (error) {
     console.error('Помилка при завантаженні дашборду:', error);
     res.status(500).send("Помилка при завантаженні сторінки");
   }
 });
+
 
 
 

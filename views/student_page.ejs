@@ -11,45 +11,64 @@
   <header>
     <%- include('header') %>
   </header>
-  <div id="studentpage-content">
-    <div class="container">
-      <h1>Привіт, <%= student.name %>!</h1>
-  
-      <div class="info-block">
-        <p style="color: white;"><span class="label">Ім’я:</span> <%= student.name %></p>
-        <p style="color: white;"><span class="label">Прізвище:</span> <%= student.surname %></p>
-        <p style="color: white;"><span class="label">Клас:</span> <%= student.grade %></p>
-        <p style="color: white;"><span class="label">Телефон:</span> <%= student.phone %></p>
-      </div>
-  
-      <h2>Ваші уроки</h2>
-      <% if (lessons.length > 0) { %>
-        <ul class="lessons">
-          <% lessons.forEach(lesson => { %>
-            <li>
-              <strong>Предмет:</strong> <%= lesson.subject %><br>
-              <strong>Дата і час:</strong> 
-              <%= moment(lesson.date).tz('Europe/Kyiv').format('YYYY-MM-DD HH:mm') %><br>
-  
-              <% if (lesson.teacherId) { %>
-                <strong>Вчитель:</strong> <%= lesson.teacherId.name %> <%= lesson.teacherId.surname %><br>
-                <strong>Телефон:</strong> <%= lesson.teacherId.phone %><br>
-              <% } else { %>
-                <em>Інформація про вчителя недоступна</em>
-              <% } %>
-            </li>
-          <% }); %>
-        </ul>
-      <% } else { %>
-        <p>У вас поки що немає уроків.</p>
-      <% } %>
-  
-      <div class="profile-buttons">
-        <a href="/student/edit" class="edit-button">Редагувати профіль</a>
-        <a href="/logout" class="logout-button">Вийти</a>
+
+  <!-- ✅ Сповіщення -->
+  <div id="alertMessage" class="alert">
+    <div class="alert-icon"></div>
+    <div class="alert-text"></div>
+    <button class="close-btn">&times;</button>
+  </div>
+
+  <!-- ✅ Основний контент -->
+  <div id="pageContent">
+    <div id="studentpage-content">
+      <div class="container">
+        <h1>Привіт, <%= student.name %>!</h1>
+
+        <div class="info-block">
+          <p style="color: white;"><span class="label">Ім’я:</span> <%= student.name %></p>
+          <p style="color: white;"><span class="label">Прізвище:</span> <%= student.surname %></p>
+          <p style="color: white;"><span class="label">Клас:</span> <%= student.grade %></p>
+          <p style="color: white;"><span class="label">Телефон:</span> <%= student.phone %></p>
+        </div>
+
+        <h2>Ваші уроки</h2>
+        <% if (lessons.length > 0) { %>
+          <ul class="lessons">
+            <% lessons.forEach(lesson => { %>
+              <li>
+                <strong>Предмет:</strong> <%= lesson.subject %><br>
+                <strong>Дата і час:</strong> 
+                <%= moment(lesson.date).tz('Europe/Kyiv').format('YYYY-MM-DD HH:mm') %><br>
+
+                <% if (lesson.teacherId) { %>
+                  <strong>Вчитель:</strong> <%= lesson.teacherId.name %> <%= lesson.teacherId.surname %><br>
+                  <strong>Телефон:</strong> <%= lesson.teacherId.phone %><br>
+                <% } else { %>
+                  <em>Інформація про вчителя недоступна</em>
+                <% } %>
+              </li>
+            <% }); %>
+          </ul>
+        <% } else { %>
+          <p>У вас поки що немає уроків.</p>
+        <% } %>
+
+        <div class="profile-buttons">
+          <a href="/student/edit" class="edit-button">Редагувати профіль</a>
+          <a href="/logout" class="logout-button">Вийти</a>
+        </div>
       </div>
     </div>
   </div>
 
+  <script id="server-message" type="application/json">
+    <%- JSON.stringify(message || '') %>
+  </script>
+
+
+
+<!-- Підключаємо зовнішній JS -->
+<script src="/js/student_page_script.js"></script>
 </body>
 </html>

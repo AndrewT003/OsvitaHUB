@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style/edit-lesson.css">
+</head>
+<body>
+    <header>
+    <%- include('header') %>
+  </header>
+  <div id="edit-lesson-content">
+
+      <h2 style="color: white;">Редагування уроку</h2>
+  
+  <form action="/edit-lesson/<%= lesson._id %>" method="POST" style="max-width: 600px; background: #222; padding: 20px; border-radius: 10px; color: white;">
+    
+    <div class="input-values-labels" style="margin-bottom: 10px;">
+      <label for="subject">Предмет:</label>
+      <input type="text" id="subject" name="subject" value="<%= lesson.subject %>" required class="form-control">
+    </div>
+  
+    <div class="input-values-labels" style="margin-bottom: 10px;">
+      <label for="date">Дата:</label>
+      <input type="date" id="date" name="date" value="<%= moment(lesson.date).tz('Europe/Kyiv').format('YYYY-MM-DD') %>" required class="form-control">
+    </div>
+  
+    <div class="input-values-labels" style="margin-bottom: 10px;">
+      <label for="time">Час:</label>
+      <input type="time" id="time" name="time" value="<%= lesson.time %>" required class="form-control">
+    </div>
+  
+    <div class="input-values-labels" style="margin-bottom: 10px;">
+      <label for="teacherId">Вчитель:</label>
+      <select name="teacherId" id="teacherId" class="form-control" required>
+        <% teachers.forEach(teacher => { %>
+          <option value="<%= teacher._id %>" <%= lesson.teacherId && teacher._id.toString() === lesson.teacherId._id.toString() ? 'selected' : '' %>>
+            <%= teacher.name %> <%= teacher.surname %>
+          </option>
+        <% }) %>
+      </select>
+    </div>
+  
+    <div class="input-values-labels" style="margin-bottom: 10px;">
+      <label for="studentId">Студент:</label>
+      <select name="studentId" id="studentId" class="form-control" required>
+        <% students.forEach(student => { %>
+          <option value="<%= student._id %>" <%= lesson.studentId && student._id.toString() === lesson.studentId._id.toString() ? 'selected' : '' %>>
+            <%= student.name %> <%= student.surname %> (Клас: <%= student.grade %>)
+          </option>
+        <% }) %>
+      </select>
+    </div>
+  
+    <button type="submit" style=" color: black; padding: 10px 20px; border: none; border-radius: 5px;">Оновити урок</button>
+    <a href="/create-lesson" style=" color: white;">Скасувати</a>
+  </form>
+  </div>
+</body>
+</html>

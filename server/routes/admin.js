@@ -1,17 +1,50 @@
+import moment from 'moment-timezone';
 import express from 'express';
 import bcrypt from 'bcrypt'
 import Users from '../models/Users.js';
 import Teacher from '../models/Teachers.js';
 import Student from '../models/Student.js';
-import Lesson from '../models/Lessons.js';  // Ось тут потрібно імпортувати модель Lesson
-import LessonPlan from '../models/LessonsPlan.js';  // Імпорт моделі LessonPlan
+import Lesson from '../models/Lessons.js';  
+import LessonPlan from '../models/LessonsPlan.js'; 
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+dotenv.config();
 
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
+// Функція для відправки листів при створенні уроку
+async function sendLessonEmails({ student, teacher, lesson }) {
+  const lessonDateLocal = moment(lesson.date).tz('Europe/Kyiv').format('DD.MM.YYYY HH:mm');
 
+  const studentMail = {
+    from: process.env.EMAIL_USER,
+    to: student.email,
+    subject: 'Ваш новий урок',
+    text: `Привіт, ${student.name}!
+    Ваш урок з предмета "${lesson.subject}" запланований на ${lessonDateLocal} з вчителем ${teacher.name} ${teacher.surname}.
+    Якщо у вас є питання, звертайтесь.`,
+  };
+
+  const teacherMail = {
+    from: process.env.EMAIL_USER,
+    to: teacher.email,
+    subject: 'Новий урок призначено',
+    text: `Привіт, ${teacher.name}!
+    Вам призначено урок з предмета "${lesson.subject}" на ${lessonDateLocal} зі студентом ${student.name} ${student.surname}.
+    Перевірте розклад.`,
+  };
+
+  await transporter.sendMail(studentMail);
+  await transporter.sendMail(teacherMail);
+}
 
 const router = express.Router();
-
-
 
 // Middleware для перевірки, що користувач є адміном
 function isAdmin(req, res, next) {
@@ -20,7 +53,6 @@ function isAdmin(req, res, next) {
   }
   return res.redirect('/login_page'); // Якщо не адмін, переадресація
 }
-
 
 router.get('/admin_page', isAdmin, async (req, res) => {
   try {
@@ -47,9 +79,6 @@ router.get('/admin_page', isAdmin, async (req, res) => {
     res.status(500).send("Помилка при завантаженні даних");
   }
 });
-
-
-
 
 router.post('/update-lesson-plan', async (req, res) => {
   const { lessonPlanId, price, description } = req.body;
@@ -80,7 +109,6 @@ router.post('/update-lesson-plan', async (req, res) => {
     res.status(500).send('Помилка при оновленні плану уроку');
   }
 });
-
 
 router.post('/create-user', async (req, res) => {
   const { name, surname, phone, email, password } = req.body;
@@ -118,22 +146,76 @@ router.post('/create-user', async (req, res) => {
   }
 });
 
-
-
-// GET: сторінка для створення уроку + список уроків
-router.get('/create-lesson', async (req, res) => {
+router.post('/delete-lesson/:id', async (req, res) => {
   try {
-    // Отримуємо список вчителів та студентів
+    await Lesson.findByIdAndDelete(req.params.id);
+    res.redirect('/create-lesson');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Помилка при видаленні уроку');
+  }
+});
+
+// GET форма редагування уроку
+router.get('/edit-lesson/:id', async (req, res) => {
+  try {
+    const lesson = await Lesson.findById(req.params.id)
+      .populate('teacherId')
+      .populate('studentId');
     const teachers = await Teacher.find();
     const students = await Student.find();
-    
-    // Отримуємо всі уроки, популюючи інформацію про вчителів та студентів
-    const lessons = await Lesson.find()
-      .populate('teacherId') 
-      .populate('studentId') 
-      .sort({ date: 1 }); 
 
-    // Рендеримо сторінку create-lesson та передаємо дані
+    if (!lesson) return res.status(404).send('Урок не знайдено');
+
+    res.render('edit-lesson', { lesson, teachers, students });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Помилка при завантаженні уроку');
+  }
+});
+
+// POST оновлення уроку
+router.post('/edit-lesson/:id', async (req, res) => {
+  try {
+    const { teacherId, studentId, subject, date, time } = req.body;
+
+    const lessonDateTime = moment(`${date} ${time}`, 'YYYY-MM-DD HH:mm')
+      .tz('Europe/Kyiv')
+      .utc();
+
+    await Lesson.findByIdAndUpdate(req.params.id, {
+      teacherId,
+      studentId,
+      subject,
+      date: lessonDateTime,
+      time
+    });
+
+    res.redirect('/create-lesson');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Помилка при оновленні уроку');
+  }
+});
+
+router.get('/create-lesson', async (req, res) => {
+  try {
+    const teachers = await Teacher.find();
+    const students = await Student.find();
+
+    const lessons = await Lesson.find()
+      .populate({
+        path: 'teacherId',
+        model: 'Teacher',
+        select: 'name surname'
+      })
+      .populate({
+        path: 'studentId',
+        model: 'Student',
+        select: 'name surname grade phone'
+      })
+      .sort({ date: 1 });
+
     res.render('create-lesson', { teachers, students, lessons });
   } catch (err) {
     console.error(err);
@@ -141,39 +223,53 @@ router.get('/create-lesson', async (req, res) => {
   }
 });
 
-
-
-
-import moment from 'moment-timezone';
-
 // POST: створення нового уроку
 router.post('/create-lesson', async (req, res) => {
   const { teacherId, studentId, subject, date, time } = req.body;
 
   try {
-    // Конкатенація дати та часу і конвертація в UTC
     const lessonDateTime = moment(`${date} ${time}`, 'YYYY-MM-DD HH:mm')
-      .tz('Europe/Kyiv') // Перетворюємо на Український час
-      .utc(); // Перетворюємо на UTC для збереження в базі
+      .tz('Europe/Kyiv')
+      .utc();
 
-    // Створення нового уроку
     const lesson = new Lesson({
       teacherId,
       studentId,
       subject,
-      date: lessonDateTime, // Зберігаємо в UTC
-      time, // Можна зберегти також час окремо, якщо хочете
+      date: lessonDateTime,
+      time,
     });
 
     await lesson.save();
-    res.redirect('/admin_page'); // Переадресовуємо назад на адмін панель
+
+    // Завантажуємо студентa і вчителя
+    const student = await Student.findById(studentId);
+    const teacher = await Teacher.findById(teacherId);
+
+    // Завантажуємо user-и для email
+    const studentUser = student ? await Users.findById(student.userId).lean() : null;
+    const teacherUser = teacher ? await Users.findById(teacher.userId).lean() : null;
+
+    if (studentUser?.email && teacherUser?.email) {
+      try {
+        await sendLessonEmails({
+          student: { ...student.toObject(), email: studentUser.email },
+          teacher: { ...teacher.toObject(), email: teacherUser.email },
+          lesson,
+        });
+      } catch (mailErr) {
+        console.error('Помилка при надсиланні листів:', mailErr);
+      }
+    } else {
+      console.warn('Відсутній email у студента або вчителя, листи не надіслані');
+    }
+
+    res.redirect('/admin_page');
   } catch (err) {
-    console.error(err);
+    console.error('Помилка при створенні уроку:', err);
     res.status(500).send('Помилка при створенні уроку');
   }
 });
-
-
 
 router.post('/logout', (req, res) => {
   req.session.destroy(err => {
@@ -184,7 +280,5 @@ router.post('/logout', (req, res) => {
   });
 });
 
-
-  
-  export default router;
+export default router;
   

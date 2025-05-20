@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title || "Помилка" %></title>
+  <link rel="stylesheet" href="/style/error_page_for_terminate_code.css">
+</head>
+<body>
+    <header>
+    <%- include('header') %>
+  </header>
+  <div id="error_page_for_terminate_code_content">
+      <div class="error-container">
+        <h1><%= title || "Помилка" %></h1>
+        <p><%= message || "Щось пішло не так. Спробуйте ще раз." %></p>
+        <a href="/login_page" class="home-link">На сторінку реєстрації</a>
+      </div>
+  </div>
+
+</body>
+</html>

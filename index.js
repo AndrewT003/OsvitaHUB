@@ -17,6 +17,7 @@ import moment from 'moment-timezone';
 import emailRoutes from './server/routes/email.js';
 import lessonRoutes from './server/routes/lessons.js';
 import purchaseRoutes from './server/routes/purchuase.js';
+import feedbackRoutes from './server/routes/feedbacks.js';
 
 
 const app = express();
@@ -65,6 +66,7 @@ app.use('/teacher', teacherRoutes);
 app.use(emailRoutes); // або app.use('/email', emailRoutes) якщо хочеш префікс
 app.use(lessonRoutes);
 app.use('/api', purchaseRoutes);
+app.use(feedbackRoutes);
 
 
 // Головна сторінка
