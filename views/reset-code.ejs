@@ -11,26 +11,28 @@
   <header>
     <%- include('header') %>
   </header>
-  <div class="form-container">
-    <h2>Скидання пароля</h2>
-    <form action="/reset-code" method="POST" autocomplete="off">
-  <input type="hidden" name="email" value="<%= email %>">
+  <div id="reset-cod-content">
+    <div class="form-container">
+      <h2>Скидання пароля</h2>
+      <form action="/reset-code" method="POST" autocomplete="off">
+    <input type="hidden" name="email" value="<%= email %>">
+    
+    <input type="text" name="code" placeholder="Код з email" 
+           autocomplete="off" inputmode="numeric" autocorrect="off" spellcheck="false">
+    
+    <input type="password" name="password" placeholder="Новий пароль" 
+           required autocomplete="new-password">
+    
+    <input type="password" name="confirmPassword" placeholder="Підтвердіть пароль" 
+           required autocomplete="new-password">
+    
+    <button id="submit-button" type="submit">Підтвердити</button>
+    <a id="backLink" href="/login_page">Назад</a>
+  </form>
   
-  <input type="text" name="code" placeholder="Код з email" 
-         autocomplete="off" inputmode="numeric" autocorrect="off" spellcheck="false">
-  
-  <input type="password" name="password" placeholder="Новий пароль" 
-         required autocomplete="new-password">
-  
-  <input type="password" name="confirmPassword" placeholder="Підтвердіть пароль" 
-         required autocomplete="new-password">
-  
-  <button id="submit-button" type="submit">Підтвердити</button>
-  <a id="backLink" href="/login_page">Назад</a>
-</form>
-
-    <% if (error) { %><p class="message error"><%= error %></p><% } %>
-    <% if (message) { %><p class="message success"><%= message %></p><% } %>
+      <% if (error) { %><p class="message error"><%= error %></p><% } %>
+      <% if (message) { %><p class="message success"><%= message %></p><% } %>
+    </div>
   </div>
 </body>
 </html>

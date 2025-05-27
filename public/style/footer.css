@@ -56,7 +56,9 @@ footer{
   visibility: hidden;
 }
 
-
+.link-for-contavt-footer-under-img{
+    text-decoration: none;
+}
 @media(max-width:1020px){
     #second-footer-div-content{
         flex-direction: column;

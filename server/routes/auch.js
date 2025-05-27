@@ -248,6 +248,17 @@ router.post('/reset-code', async (req, res) => {
     });
   }
 
+  // Перевірка: новий пароль не повинен збігатися зі старим
+  const isSamePassword = await bcrypt.compare(password, user.passwordHash);
+  if (isSamePassword) {
+    return res.render('reset-code', {
+      email,
+      error: 'Новий пароль не може збігатися з попереднім',
+      message: null
+    });
+  }
+
+  // Зберегти новий пароль
   const passwordHash = await bcrypt.hash(password, 10);
   user.passwordHash = passwordHash;
   user.resetCode = undefined;

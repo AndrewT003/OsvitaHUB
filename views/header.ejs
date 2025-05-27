@@ -14,13 +14,13 @@
 </div>
 
 <div id="contact-profile">
-  <a href="#" id="contactLink">КОНТАКТИ</a>
+  <a href="#footer-content" id="contactLink">КОНТАКТИ</a>
   <!-- Перевіряємо, чи користувач авторизований -->
   <% if (user) { %>
     <!-- Якщо авторизований, показуємо ініціали або букву A для адміну -->
     <% if (user.role === 'admin') { %>
-      <a href="/login_page">
-        <div class="profile-circle" style="background-color: #fdb446; color: white; font-size: 22px;">
+      <a href="/login_page" style="text-decoration: none;">
+        <div class="profile-circle" style="background-color: #fdb446; color: white; font-size: 22px; text-decoration: none;">
           A
         </div>
       </a>

@@ -18,7 +18,7 @@ import emailRoutes from './server/routes/email.js';
 import lessonRoutes from './server/routes/lessons.js';
 import purchaseRoutes from './server/routes/purchuase.js';
 import feedbackRoutes from './server/routes/feedbacks.js';
-
+import Contact from './server/models/Contact.js';
 
 const app = express();
 const PORT = 3000;
@@ -55,6 +55,19 @@ app.use((req, res, next) => {
   res.locals.user = req.user || null;  // Передаємо user у локальні змінні для всіх шаблонів
   next();
 });
+
+
+app.use(async (req, res, next) => {
+  try {
+    const contacts = await Contact.findOne(); // Припускаємо, що у БД один запис
+    res.locals.contacts = contacts; // робимо доступним у всіх шаблонах
+  } catch (err) {
+    console.error('Помилка при завантаженні контактів:', err);
+    res.locals.contacts = null;
+  }
+  next();
+});
+
 
 // Основні маршрути
 AboutUsPage(app);

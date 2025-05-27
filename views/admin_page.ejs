@@ -36,7 +36,7 @@
     <button type="submit">Створити вчителя</button>
   </form>
 
-  <a style="color: white;" href="/create-lesson">Перейти до створення уроку</a>
+  <a  href="/create-lesson">Перейти до створення уроку</a>
 
   <!-- Форма редагування ціни та опису LessonPlan -->
   <h2>Редагування плану уроку</h2>
@@ -55,8 +55,34 @@
     <label>Опис:</label>
     <textarea name="description" id="description"></textarea>
 
+    <label>Детальний опис:</label>
+    <textarea name="detailedDescription" id="detailedDescription"></textarea>
+
+
     <button type="submit">Зберегти зміни</button>
   </form>
+
+
+  <h2>Редагування контактів (оберіть соцмережу та введіть посилання/номер)</h2>
+<form action="/update-single-contact" method="POST">
+  <label for="contactType">Оберіть контакт:</label>
+  <select name="contactType" id="contactType" required>
+    <option value="" disabled selected>Оберіть соцмережу або телефон</option>
+    <option value="instagram">Instagram</option>
+    <option value="tiktok">TikTok</option>
+    <option value="facebook">Facebook</option>
+    <option value="telegram">Telegram</option>
+    <option value="whatsapp">WhatsApp</option>
+    <option value="viber">Viber</option>
+    <option value="phoneNumber">Телефон</option>
+  </select>
+
+  <label for="contactValue">Введіть посилання або номер:</label>
+  <input type="text" name="contactValue" id="contactValue" required placeholder="Введіть посилання або номер" />
+
+  <button type="submit">Оновити контакт</button>
+</form>
+
 
   <form action="/logout" method="POST" class="logout-form">
     <button type="submit">Вийти з акаунту</button>

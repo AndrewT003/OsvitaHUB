@@ -8,6 +8,7 @@ import Lesson from '../models/Lessons.js';
 import LessonPlan from '../models/LessonsPlan.js'; 
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import Contact from '../models/Contact.js';
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
@@ -80,33 +81,28 @@ router.get('/admin_page', isAdmin, async (req, res) => {
   }
 });
 
-router.post('/update-lesson-plan', async (req, res) => {
-  const { lessonPlanId, price, description } = req.body;
+router.post('/update-single-contact', async (req, res) => {
+  const { contactType, contactValue } = req.body;
 
   try {
-    // Готуємо лише ті поля, які потрібно оновити
-    const updateFields = {};
-    if (price !== undefined && price !== '') updateFields.price = price;
-    if (description !== undefined && description !== '') updateFields.description = description;
-
-    if (Object.keys(updateFields).length === 0) {
-      return res.status(400).send('Немає даних для оновлення');
+    let contacts = await Contact.findOne();
+    if (!contacts) {
+      contacts = new Contact();
     }
 
-    const updatedPlan = await LessonPlan.findByIdAndUpdate(
-      lessonPlanId,
-      updateFields,
-      { new: true }
-    );
-
-    if (!updatedPlan) {
-      return res.status(404).send("План уроку не знайдено");
+    // Захищаємо, щоб оновити тільки існуючі поля
+    const allowedFields = ['instagram', 'tiktok', 'facebook', 'telegram', 'whatsapp', 'viber', 'phoneNumber'];
+    if (!allowedFields.includes(contactType)) {
+      return res.status(400).send('Невірний тип контакту');
     }
+
+    contacts[contactType] = contactValue;
+    await contacts.save();
 
     res.redirect('/admin_page');
-  } catch (err) {
-    console.error('Помилка при оновленні плану уроку:', err);
-    res.status(500).send('Помилка при оновленні плану уроку');
+  } catch (error) {
+    console.error('Помилка оновлення контакту:', error);
+    res.status(500).send('Помилка сервера');
   }
 });
 
@@ -143,6 +139,32 @@ router.post('/create-user', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send("Помилка при створенні вчителя");
+  }
+});
+
+router.post('/update-contacts', async (req, res) => {
+  const { instagram, tiktok, facebook, telegram, whatsapp, viber, phoneNumber } = req.body;
+
+  try {
+    let contacts = await Contact.findOne();
+    if (!contacts) {
+      contacts = new Contact();
+    }
+
+    contacts.instagram = instagram;
+    contacts.tiktok = tiktok;
+    contacts.facebook = facebook;
+    contacts.telegram = telegram;
+    contacts.whatsapp = whatsapp;
+    contacts.viber = viber;
+    contacts.phoneNumber = phoneNumber;
+
+    await contacts.save();
+
+    res.redirect('/admin_page');
+  } catch (error) {
+    console.error('Помилка оновлення контактів:', error);
+    res.status(500).send('Помилка сервера');
   }
 });
 
